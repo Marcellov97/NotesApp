@@ -2,8 +2,12 @@ package com.socialnotes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @SpringBootApplication
 @RestController
@@ -12,8 +16,12 @@ public class Main {
         SpringApplication.run(Main.class,args);
     }
 
-    @GetMapping("/greet")
-    public String greet(){
-        return "Hello";
+    @GetMapping("/utente")
+    public Utente getUtente (){
+        return new Utente(1,"marcello","Vestri","marcelloV97","ma.vestri@sscnapoli.it","fozzanapoli",false);
+
     }
+
+
+
 }
