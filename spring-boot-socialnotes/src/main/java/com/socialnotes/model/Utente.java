@@ -1,4 +1,4 @@
-package com.socialnotes;
+package com.socialnotes.model;
 
 import java.util.Objects;
 
