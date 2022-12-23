@@ -3,9 +3,7 @@ package com.socialnotes.controller;
 import com.socialnotes.model.Utente;
 import com.socialnotes.service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path= "api/utente")
@@ -24,6 +22,11 @@ public class UtenteController {
     @GetMapping
     public Utente getUtente (){
         return utenteService.getUtente();
+    }
+
+    @PostMapping
+    public void addUtente(@RequestBody Utente utente){
+        utenteService.addUtente(utente);
     }
 
 

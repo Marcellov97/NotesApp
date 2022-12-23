@@ -6,5 +6,5 @@ public interface PostDao {
 
     boolean addPost(Post post);
 
-    boolean prelevaPost(); 
+    boolean prelevaPost();
 }
