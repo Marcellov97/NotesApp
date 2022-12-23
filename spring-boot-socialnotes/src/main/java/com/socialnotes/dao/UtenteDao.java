@@ -9,6 +9,8 @@ INTERFACCIA PER DEFINIRE QUELLE CHE SONO I METODI DI ACCESSO DATABASE
 
 public interface UtenteDao {
 
+    //INSERIMENTO UTENTE
+
     boolean insertUtente(UUID id, Utente utente);
 
     default boolean addUtente(Utente utente){
@@ -16,7 +18,9 @@ public interface UtenteDao {
         return insertUtente(id, utente);
     }
 
+    //PRELIEVO UTENTE
     Utente prelevaUtente();
+
 
 
 }
