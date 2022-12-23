@@ -9,17 +9,19 @@ INTERFACCIA PER DEFINIRE QUELLE CHE SONO I METODI DI ACCESSO DATABASE
 
 public interface UtenteDao {
 
-    //INSERIMENTO UTENTE
+    //TODO trovare una convenzione per i nomi dei metodi di accesso al database
 
-    boolean insertUtente(UUID id, Utente utente);
+    //METODI INSERIMENTO UTENTE
+    boolean insertUtente(UUID id, Utente utente);   //serve per inserire nel database l'utente con l'id
 
-    default boolean addUtente(Utente utente){
+    default boolean addUtente(Utente utente){       //serve per aggiungere un utente al database ma creando un id random
         UUID id = UUID.randomUUID();
         return insertUtente(id, utente);
     }
 
-    //PRELIEVO UTENTE
-    Utente prelevaUtente();
+
+    //METODI PRELIEVO UTENTE
+    Utente prelevaUtente(); //serve per prelevare un utente
 
 
 

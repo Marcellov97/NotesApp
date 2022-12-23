@@ -14,17 +14,18 @@ CLASSE CHE DEFINISCE I SERVIZI MESSI A DISPOSIZIONE PER LA CLASSE UTENTE
 public class UtenteService {
 
     //VARIABILI
-    private final UtenteDao utenteDao;
+    private final UtenteDao utenteDao;  //variabile che mette a disposizione i metodi di accesso al DB
 
+
+    //COSTRUTTORI
     @Autowired
     public UtenteService(@Qualifier("MongoDao") UtenteDao utenteDao) {
         this.utenteDao = utenteDao;
     }
 
-    public boolean addUtente(Utente utente){
-        utenteDao.addUtente(utente);
-        return false;
-    }
+
+    //METODI
+    public boolean addUtente(Utente utente){return utenteDao.addUtente(utente);}
 
     public Utente getUtente(){
         return utenteDao.prelevaUtente();
