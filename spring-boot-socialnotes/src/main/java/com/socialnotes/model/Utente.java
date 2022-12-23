@@ -1,9 +1,15 @@
 package com.socialnotes.model;
 
 import java.util.Objects;
+import java.util.UUID;
+
+/*
+CLASSE CHE DEFINISCE IL MODELLO DELL'UTENTE,
+QUESTA STRUTTURA SARA' LA STESSA CHE STA NEL DABASE
+ */
 
 public class Utente {
-    private Integer id;
+    private UUID id;
     private String nome;
     private String cognome;
     private String nomeUtente;
@@ -11,7 +17,7 @@ public class Utente {
     private String password;
     private boolean moderatore;
 
-    public Utente(Integer id, String nome, String cognome, String nomeUtente, String email, String password, boolean moderatore) {
+    public Utente(UUID id, String nome, String cognome, String nomeUtente, String email, String password, boolean moderatore) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -21,11 +27,12 @@ public class Utente {
         this.moderatore = moderatore;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
+
         this.id = id;
     }
 
