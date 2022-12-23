@@ -5,7 +5,6 @@ import com.socialnotes.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import java.util.UUID;
 
 /*
 CLASSE CHE DEFINISCE I SERVIZI MESSI A DISPOSIZIONE PER LA CLASSE UTENTE
@@ -28,6 +27,6 @@ public class UtenteService {
     }
 
     public Utente getUtente(){
-        return utenteDao.getUtente();
+        return utenteDao.prelevaUtente();
     }
 }

@@ -20,7 +20,7 @@ public class UtenteDataAccessService  implements UtenteDao{
     }
 
     @Override
-    public Utente getUtente() { //TODO adesso ritorna un oggetto creato sul momento, collegarlo veramente ad un database
+    public Utente prelevaUtente() { //TODO adesso ritorna un oggetto creato sul momento, collegarlo veramente ad un database
         return new Utente(UUID.randomUUID(),"Chiara","Paventa","chiarapav","c.paventa@sscnapoli.it","fozzanapoli",false);
 
     }

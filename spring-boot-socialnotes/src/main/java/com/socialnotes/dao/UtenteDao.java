@@ -1,8 +1,6 @@
 package com.socialnotes.dao;
 
 import com.socialnotes.model.Utente;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.UUID;
 
 /*
@@ -18,7 +16,7 @@ public interface UtenteDao {
         return insertUtente(id, utente);
     }
 
-    Utente getUtente();
+    Utente prelevaUtente();
 
 
 }
