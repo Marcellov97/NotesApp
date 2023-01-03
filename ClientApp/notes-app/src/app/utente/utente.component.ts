@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Utente} from "./model/utente";
 
 @Component({
   selector: 'app-utente',
@@ -7,8 +8,14 @@ import { Component } from '@angular/core';
 })
 export class UtenteComponent {
 
-  nome = 'Riccardo'
-  cognome = 'Malato'
-  nomeUtente = 'RickSick74'
+  utente : Utente = {
+    id : '1',
+    nome : 'Riccardo',
+    cognome : 'Malato',
+    nomeUtente : 'RickSick74',
+    email : 'rik.partenopeo@napoli.it',
+    password : 'fozzanapolisempre',
+    moderatore : true
+  }
 
 }
