@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class UtenteComponent {
 
+  nome = 'Riccardo'
+  cognome = 'Malato'
+  nomeUtente = 'RickSick74'
+
 }
