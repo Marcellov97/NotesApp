@@ -1,7 +1,14 @@
 
+<app-utente-detail [utente]="selectedUtente"></app-utente-detail>
 
-<body>Oggetto di tipo Utente di seguito</body>
+<h2>Utenti</h2>
+<ul class="utente">
+  <li *ngFor="let utente of UTENTI">
+    <button type="button" (click)="onSelect(utente)">
+      <span>{{utente.id}} </span>
+      <span>{{utente.nome}} </span>
+      <span>{{utente.cognome}}</span>
+    </button>
+  </li>
+</ul>
 
-<h2>{{utente.nomeUtente | uppercase}} Details</h2>
-<div><span>id: </span>{{utente.id}}</div>
-<div><span>name: </span>{{utente.nome}}</div>
