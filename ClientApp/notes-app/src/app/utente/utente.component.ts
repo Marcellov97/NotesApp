@@ -26,7 +26,7 @@ export class UtenteComponent {
   }
 
   getAllUtenti(): void{
-    this.UTENTI = this.utenteService.getAllUtenti();
+    this.utenteService.getAllUtenti().subscribe(utenti => this.UTENTI = utenti)
   }
 
 }
