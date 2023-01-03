@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Utente} from "../model/utente";
+import { UtenteService} from "../utente.service";
 
 @Component({
   selector: 'app-utente', //nome per selezionare questo componente
@@ -11,32 +12,21 @@ export class UtenteComponent {
 
   selectedUtente? : Utente;
 
-  UTENTI : Utente[] = [
-    {    id : '1',
-      nome : 'Riccardo',
-      cognome : 'Malato',
-      nomeUtente : 'RickSick74',
-      email : 'rik.partenopeo@napoli.it',
-      password : 'fozzanapolisempre',
-      moderatore : true},
-    {    id : '2',
-      nome : 'Marcello',
-      cognome : 'Vestri',
-      nomeUtente : 'Marcellov97',
-      email : 'ma.vestri@napoli.it',
-      password : 'fozzanapolisempre',
-      moderatore : false},
-    {    id : '3',
-      nome : 'Chiara',
-      cognome : 'Paventa',
-      nomeUtente : 'chiapav',
-      email : 'chia@lilli.dog',
-      password : 'lilli',
-      moderatore : true}
-  ]
+  UTENTI : Utente[] = []
+
+  constructor(private utenteService: UtenteService) {
+  }
+
+  ngOnInit(): void{
+    this.getAllUtenti();
+  }
 
   onSelect(utente: Utente): void{
     this.selectedUtente = utente;
+  }
+
+  getAllUtenti(): void{
+    this.UTENTI = this.utenteService.getAllUtenti();
   }
 
 }
