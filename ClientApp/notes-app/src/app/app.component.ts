@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   //qua definisco le variabili che poi posso usare all'interno del file HTML
 
-  title = 'Schermata iniziale Notes App';
+  title = 'Notes App';
 
-  body = 'Questo è il body, ossia dove si scrive la maggior parte della roba.';
+  body = 'Di seguito ci sono i link di maggiore utilità';
 }
