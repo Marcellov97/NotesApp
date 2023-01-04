@@ -13,7 +13,13 @@ export class UtenteComponent implements OnInit{
   selectedUtente? : Utente;
 
   UTENTI : Utente[] = []
-  utenteSingle?: Utente;
+  utenteSingle: Utente = {    id : '1',
+    nome : 'Riccardo',
+    cognome : 'Malato',
+    nomeUtente : 'RickSick74',
+    email : 'rik.partenopeo@napoli.it',
+    password : 'fozzanapolisempre',
+    moderatore : true};
 
   constructor(private utenteService: UtenteService) {
   }
