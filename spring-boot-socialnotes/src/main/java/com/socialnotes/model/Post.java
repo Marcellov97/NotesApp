@@ -1,75 +1,72 @@
 package com.socialnotes.model;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class Post {
-
-    //VARIABILI
-    private UUID id;
+    private String id;
     private String descrizione;
     private int valutazione;
     private boolean segnalato;
+    private String nomeUtente;
 
-    public Post(UUID id, String descrizione, int valutazione, boolean segnalato) {
+    public Post (String id, String descrizione, int valutazione, boolean segnalato, String nomeUtente) {
         this.id = id;
         this.descrizione = descrizione;
         this.valutazione = valutazione;
         this.segnalato = segnalato;
+        this.nomeUtente = nomeUtente;
     }
 
-    public UUID getId() {
+    public Post (String descrizione, int valutazione, boolean segnalato, String nomeUtente) {
+        this.descrizione = descrizione;
+        this.valutazione = valutazione;
+        this.segnalato = segnalato;
+        this.nomeUtente = nomeUtente;
+    }
+
+    public String getId () {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId (String id) {
         this.id = id;
     }
 
-    public String getDescrizione() {
+    public String getDescrizione () {
         return descrizione;
     }
 
-    public void setDescrizione(String descrizione) {
+    public void setDescrizione (String descrizione) {
         this.descrizione = descrizione;
     }
 
-    public int getValutazione() {
+    public int getValutazione () {
         return valutazione;
     }
 
-    public void setValutazione(int valutazione) {
+    public void setValutazione (int valutazione) {
         this.valutazione = valutazione;
     }
 
-    public boolean isSegnalato() {
+    public boolean getSegnalato () {
         return segnalato;
     }
 
-    public void setSegnalato(boolean segnalato) {
+    public void setSegnalato (boolean segnalato) {
         this.segnalato = segnalato;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Post post = (Post) o;
-        return valutazione == post.valutazione && segnalato == post.segnalato && Objects.equals(id, post.id) && Objects.equals(descrizione, post.descrizione);
+    public String getNomeUtente () {
+        return nomeUtente;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, descrizione, valutazione, segnalato);
+    public void setNomeUtente (String nomeUtente) {
+        this.nomeUtente = nomeUtente;
     }
 
     @Override
     public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", descrizione='" + descrizione + '\'' +
-                ", valutazione=" + valutazione +
-                ", segnalato=" + segnalato +
-                '}';
+        return "Post [id=" + id + ", descrizione=" + descrizione + ", valutazione=" + valutazione
+                + ", segnalato=" + segnalato + ", nomeUtente=" + nomeUtente + "]";
     }
 }

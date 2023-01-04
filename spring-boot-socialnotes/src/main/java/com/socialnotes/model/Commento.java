@@ -5,19 +5,29 @@ import java.util.UUID;
 
 public class Commento {
 
-    private UUID id;
+    private String id;
     private String testo;
+    private String idPost;
+    private String idUtente;
 
-    public Commento(UUID id, String testo) {
+    public Commento(String id, String testo, String idPost, String idUtente) {
         this.id = id;
         this.testo = testo;
+        this.idPost = idPost;
+        this.idUtente = idUtente;
     }
 
-    public UUID getId() {
+    public Commento (String testo, String idPost, String idUtente) {
+        this.testo = testo;
+        this.idPost = idPost;
+        this.idUtente = idUtente;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -28,6 +38,14 @@ public class Commento {
     public void setTesto(String testo) {
         this.testo = testo;
     }
+
+    public String getIdPost() { return idPost; }
+
+    public void setIdPost(String idPost) { this.idPost = idPost; }
+
+    public String getIdUtente() { return idUtente; }
+
+    public void setIdUtente(String idUtente) { this.idUtente = idUtente; }
 
     @Override
     public boolean equals(Object o) {
@@ -44,9 +62,7 @@ public class Commento {
 
     @Override
     public String toString() {
-        return "Commento{" +
-                "id=" + id +
-                ", testo='" + testo + '\'' +
-                '}';
+        return "Commento [id=" + id + ", testo=" + testo + ", idPost=" + idPost + ", idUtente="
+                + idUtente + "]";
     }
 }

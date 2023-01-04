@@ -1,33 +1,25 @@
-package com.socialnotes.service;
+    package com.socialnotes.service;
 
-import com.socialnotes.dao.UtenteDao;
-import com.socialnotes.model.Utente;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+    import com.socialnotes.dao.UtenteDao;
+    import com.socialnotes.model.Utente;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.beans.factory.annotation.Qualifier;
+    import org.springframework.stereotype.Service;
 
-/*
-CLASSE CHE DEFINISCE I SERVIZI MESSI A DISPOSIZIONE PER LA CLASSE UTENTE
- */
+    import java.util.List;
 
-@Service
-public class UtenteService {
+    /**
+     * CLASSE CHE DEFINISCE I SERVIZI MESSI A DISPOSIZIONE PER LA CLASSE UTENTE
+     */
 
-    //VARIABILI
-    private final UtenteDao utenteDao;  //variabile che mette a disposizione i metodi di accesso al DB
+    @Service
+    public class UtenteService {
+        private final UtenteDao utenteDao; // mette a disposizione i metodi di accesso al DB
+        @Autowired
+        public UtenteService(@Qualifier("UtenteDao") UtenteDao utenteDao) { this.utenteDao = utenteDao; }
+        public Utente getUtente(String nomeUtente) { return utenteDao.getUtente(nomeUtente); }
+        public List<Utente> getAllUtenti() { return utenteDao.getAllUtenti(); }
+        public boolean setUtente(Utente utente) { return utenteDao.setUtente(utente); }
+        public boolean deleteUtente(String nomeUtente) { return utenteDao.deleteUtente(nomeUtente); }
 
-
-    //COSTRUTTORI
-    @Autowired
-    public UtenteService(@Qualifier("MongoDao") UtenteDao utenteDao) {
-        this.utenteDao = utenteDao;
-    }
-
-
-    //METODI
-    public boolean addUtente(Utente utente){return utenteDao.addUtente(utente);}
-
-    public Utente getUtente(){
-        return utenteDao.prelevaUtente();
-    }
-}
+        }

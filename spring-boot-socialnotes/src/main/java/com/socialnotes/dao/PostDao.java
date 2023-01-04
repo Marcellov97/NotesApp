@@ -1,10 +1,17 @@
 package com.socialnotes.dao;
 
-import com.socialnotes.model.Post;
+import com.socialnotes.model.*;
+
+import java.util.List;
 
 public interface PostDao {
+    List<Post> getAllPost ();
+    List<Post> getPostsValutazione (String valutazione);
+    List<Post> getPostsUtente (String nomeUtente);
+    //List<Post> getPostsCategoria (Categoria categoria;
+    boolean setPost(Post post);
+    boolean updatePostValutazione(String idPost, int valutazione);
+    boolean updatePostSegnalazione (String idPost);
+    boolean deletePost (String idPost);
 
-    boolean addPost(Post post);
-
-    boolean prelevaPost();
 }

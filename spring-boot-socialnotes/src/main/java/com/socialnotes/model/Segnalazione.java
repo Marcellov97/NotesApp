@@ -1,24 +1,46 @@
 package com.socialnotes.model;
 
-import java.util.Objects;
-import java.util.UUID;
-
 public class Segnalazione {
-
-    private UUID id;
+    private String idSegnalazione;
     private String testo;
+    private String idPost;
+    private String idUtente;
 
-    public Segnalazione(UUID id, String testo) {
-        this.id = id;
+    public Segnalazione (String idSegnalazione, String testo, String idPost, String idUtente) {
+        this.idSegnalazione = idSegnalazione;
         this.testo = testo;
+        this.idPost = idPost;
+        this.idUtente = idUtente;
     }
 
-    public UUID getId() {
-        return id;
+    public Segnalazione (String testo, String idPost, String idUtente) {
+        this.testo = testo;
+        this.idPost = idPost;
+        this.idUtente = idUtente;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public String getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(String idPost) {
+        this.idPost = idPost;
+    }
+
+    public String getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(String idUtente) {
+        this.idUtente = idUtente;
+    }
+
+    public String getIdSegnalazione() {
+        return idSegnalazione;
+    }
+
+    public void setIdSegnalazione(String idSegnalazione) {
+        this.idSegnalazione = idSegnalazione;
     }
 
     public String getTesto() {
@@ -30,23 +52,9 @@ public class Segnalazione {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Segnalazione that = (Segnalazione) o;
-        return Objects.equals(id, that.id) && Objects.equals(testo, that.testo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, testo);
-    }
-
-    @Override
     public String toString() {
-        return "Segnalazione{" +
-                "id=" + id +
-                ", testo='" + testo + '\'' +
-                '}';
+        return "Segnalazione [idSegnalazione=" + idSegnalazione + ", testo=" + testo + ", idPost=" + idPost
+                + ", idUtente=" + idUtente + "]";
     }
+
 }

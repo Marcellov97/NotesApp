@@ -1,28 +1,17 @@
-package com.socialnotes.dao;
+    package com.socialnotes.dao;
 
-import com.socialnotes.model.Utente;
-import java.util.UUID;
+    import com.socialnotes.model.*;
+    import java.util.List;
 
-/*
-INTERFACCIA PER DEFINIRE QUELLE CHE SONO I METODI DI ACCESSO DATABASE
- */
+    /**
+     * CLASSE PER LA DEFINIZIONE DEI METODI DI ACCESSO AL DB PER LA COLLEZIONE UTENTE
+     */
+    public interface UtenteDao {
+        Utente getUtente (String nomeUtente);
+        List<Utente> getAllUtenti ();
+        boolean setUtente(Utente utente);
+        boolean deleteUtente(String nomeUtente);
 
-public interface UtenteDao {
+        //boolean updatePasswordUtente(String password);
 
-    //TODO trovare una convenzione per i nomi dei metodi di accesso al database
-
-    //METODI INSERIMENTO UTENTE
-    boolean insertUtente(UUID id, Utente utente);   //serve per inserire nel database l'utente con l'id
-
-    default boolean addUtente(Utente utente){       //serve per aggiungere un utente al database ma creando un id random
-        UUID id = UUID.randomUUID();
-        return insertUtente(id, utente);
     }
-
-
-    //METODI PRELIEVO UTENTE
-    Utente prelevaUtente(); //serve per prelevare un utente
-
-
-
-}
