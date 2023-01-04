@@ -8,16 +8,18 @@ import { UtenteService} from "../service/utente.service";
   styleUrls: ['./utente.component.css'] //stile del componente in CSS
 })
 
-export class UtenteComponent {
+export class UtenteComponent implements OnInit{
 
   selectedUtente? : Utente;
 
   UTENTI : Utente[] = []
+  utenteSingle?: Utente;
 
   constructor(private utenteService: UtenteService) {
   }
 
   ngOnInit(): void{
+    this.getUtente();
     this.getAllUtenti();
   }
 
@@ -27,6 +29,18 @@ export class UtenteComponent {
 
   getAllUtenti(): void{
     this.utenteService.getAllUtenti().subscribe(utenti => this.UTENTI = utenti)
+  }
+
+  getUtente(): void{
+    this.utenteService.getUtente().subscribe((data: Utente) => this.utenteSingle = {
+      id : data.id,
+      nome : data.nome,
+      cognome : data.cognome,
+      nomeUtente : data.nomeUtente,
+      email : data.email,
+      password : data.password,
+      moderatore : data.moderatore,
+    })
   }
 
 }

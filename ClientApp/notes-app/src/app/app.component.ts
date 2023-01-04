@@ -10,5 +10,5 @@ export class AppComponent {
 
   title = 'Notes App';
 
-  body = 'Di seguito ci sono i link di maggiore utilità';
+  body = 'Barra delle pagine di questa app';
 }
