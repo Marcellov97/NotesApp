@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import {POSTS} from "./DB-fake-posts";
+import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
-import {Utente} from "../model/utente";
-import {UTENTI} from "./DB-fake-utenti";
 import {Post} from "../model/post";
 import {HttpClient} from "@angular/common/http";
 
@@ -11,10 +9,19 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PostService {
 
-  constructor() { }
+  private postURL = 'http://localhost:8080/post'
+
+  constructor(private http : HttpClient) { }
 
   getAllPosts(): Observable<Post[]>{
-    const allPosts = of(POSTS);
-    return allPosts;
+    return this.http.get<Post[]>(this.postURL + '/getAllPosts')
+  }
+
+  getPostsbyValutazione(valutazione : string): Observable<Post[]>{
+    return this.http.get<Post[]>(this.postURL + '/getPostsValutazione/' + valutazione)
+  }
+
+  getPostsbyUtente(nomeUtente: string): Observable<Post[]>{
+    return this.http.get<Post[]>(this.postURL + 'getPostsUtente/' + nomeUtente)
   }
 }

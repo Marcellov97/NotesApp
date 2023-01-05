@@ -2,10 +2,14 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+<<<<<<< HEAD
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/notes-app/dist" />
       <excludeFolder url="file://$MODULE_DIR$/notes-app/tmp" />
     </content>
+=======
+    <content url="file://$MODULE_DIR$" />
+>>>>>>> 672543d5430e44eb3b9fd528d9636384c69f5bf4
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
