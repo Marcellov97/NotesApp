@@ -9,19 +9,18 @@ import {UTENTI} from "./DB-fake-utenti";
 })
 export class UtenteService {
 
+  private utenteURL = 'http://localhost:8080/utente'; //URL del Controller Utente
 
 
   constructor( private http: HttpClient) { }
 
 
   getAllUtenti(): Observable<Utente[]>{
-    const allUtenti = of(UTENTI);
-    return allUtenti;
+    return this.http.get<Utente[]>(this.utenteURL+'/getAllUtenti')
   }
 
-  getUtente(): Observable<Utente>{
-    const utente = of(UTENTI[0]);
-    return utente;
+  getUtente(nomeUtente : string): Observable<Utente>{
+    return this.http.get<Utente>(this.utenteURL + 'getUtente/' + nomeUtente)
   }
 
 
