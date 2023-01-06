@@ -40,7 +40,7 @@ public class PostDataAccessService implements PostDao {
                              d.getString("descrizione"),
                              d.getInteger("valutazione"),
                              d.getBoolean("segnalato"),
-                             d.getString("idUtente"));
+                             d.getString("nomeUtente"));
             posts.add(post);
         }
         //result.forEach((Block<? super Document>) doc -> posts.add(converter.read(Post.class, doc)));
@@ -60,7 +60,7 @@ public class PostDataAccessService implements PostDao {
                              d.getString("descrizione"),
                              d.getInteger("valutazione"),
                              d.getBoolean("segnalato"),
-                             d.getString("idUtente"));
+                             d.getString("nomeUtente"));
             posts.add(post);
         }
         //result.forEach((Block<? super Document>) doc -> posts.add(converter.read(Post.class, doc)));
@@ -85,14 +85,13 @@ public class PostDataAccessService implements PostDao {
                     d.getString("descrizione"),
                     d.getInteger("valutazione"),
                     d.getBoolean("segnalato"),
-                    d.getString("idUtente"));
+                    d.getString("nomeUtente"));
             posts.add(post);
         }
         //resultPost.forEach((Block<? super Document>) doc -> posts.add(converter.read(Post.class, doc)));
         return posts;
     }
 
-    // TODO testare funzionamento
     @Override
     public boolean setPost(Post post) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
@@ -103,7 +102,7 @@ public class PostDataAccessService implements PostDao {
                     .append("descrizione", post.getDescrizione())
                     .append("valutazione", post.getValutazione())
                     .append("segnalato", post.getSegnalato())
-                    .append("idUtente", post.getId())
+                    .append("nomeUtente", post.getNomeUtente())
             );
         } catch (MongoException me) {
             return false;
@@ -128,7 +127,6 @@ public class PostDataAccessService implements PostDao {
         return true;
     }
 
-    // TODO testare funzionamento
     @Override
     public boolean updatePostSegnalazione(String idPost) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");

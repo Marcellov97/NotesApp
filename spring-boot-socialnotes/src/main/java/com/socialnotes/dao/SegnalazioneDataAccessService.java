@@ -23,7 +23,6 @@ public class SegnalazioneDataAccessService implements SegnalazioneDao {
     @Autowired
     MongoConverter converter;
 
-    // VEDERE COME RICHIAMARE ALTRI METODI DAO
     @Override
     public boolean setSegnalazione(Segnalazione segnalazione) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");

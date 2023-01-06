@@ -5,8 +5,8 @@ import com.socialnotes.model.Commento;
 import java.util.List;
 
 public interface CommentoDao {
+    List<Commento> getCommentiPost (String idPost);
     boolean setCommento (Commento commento);
     boolean deleteCommento (String idCommento);
-    List<Commento> getCommentiPost (String idPost);
-    void deleteCommentiPost (String idPost);
+    boolean deleteCommentiPost (String idPost);
 }

@@ -15,9 +15,9 @@ public class CommentoService {
     @Autowired
     public CommentoService(CommentoDao commentoDao) { this.commentoDao = commentoDao; }
 
-    public boolean setCommento (Commento commento) { return commentoDao.setCommento(commento); }
-    public boolean deleteCommento (String idCommento) { return commentoDao.deleteCommento(idCommento);}
     public List<Commento> getCommentiPost (String idPost){ return commentoDao.getCommentiPost(idPost);}
-    public void deleteCommentiPost (String idPost){ commentoDao.deleteCommentiPost(idPost);}
+    public boolean setCommento (Commento commento) { return commentoDao.setCommento(commento); }
+    public boolean deleteCommento (String idCommento) { return commentoDao.deleteCommento(idCommento); }
+    public boolean deleteCommentiPost (String idPost){ return commentoDao.deleteCommentiPost(idPost); }
 
 }

@@ -29,6 +29,25 @@ public class ValutazioneDataAccessService implements ValutazioneDao {
     MongoConverter converter;
 
     @Override
+    public List<Valutazione> getValutazioniPost(String idPost) {
+        LinkedList<Valutazione> valutazioni = new LinkedList<Valutazione>();
+        Valutazione valutazione;
+        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+        MongoCollection<org.bson.Document> collectionValutazioni = mongoDatabase.getCollection("Valutazione");
+        Bson filterPost = Filters.eq("idPost", idPost);
+        FindIterable<Document> docValutazioni = collectionValutazioni.find(filterPost);
+        for (Document d : docValutazioni) {
+            valutazione = new Valutazione (d.getObjectId("_id").toString(),
+                    d.getInteger("valutazione"),
+                    d.getString("idPost"),
+                    d.getString("idUtente"));
+            valutazioni.add(valutazione);
+            System.out.println(valutazione.toString());
+        }
+        return valutazioni;
+    }
+
+    @Override
     public boolean setValutazione(Valutazione valutazione) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
         MongoCollection<Document> collection = mongoDatabase.getCollection("Valutazione");
@@ -46,32 +65,26 @@ public class ValutazioneDataAccessService implements ValutazioneDao {
     }
 
     @Override
-    public void deleteValutazione(String idValutazione) {
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("Valutazione");
-        collectionPosts.deleteOne(new Document("_id", new ObjectId(idValutazione)));
-    }
-
-    @Override
-    public List<Valutazione> getValutazioniPost(String idPost) {
-        LinkedList<Valutazione> valutazioni = new LinkedList<Valutazione>();
-        Valutazione valutazione;
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionValutazioni = mongoDatabase.getCollection("Valutazione");
-        Bson filterPost = Filters.eq("idPost", idPost);
-        FindIterable<Document> docValutazioni = collectionValutazioni.find(filterPost);
-        for (Document d : docValutazioni) {
-            valutazione = new Valutazione (d.getObjectId("_id").toString(), d.getInteger("valutazione"), d.getString("idPost"), d.getString("idUtente"));
-            valutazioni.add(valutazione);
-            System.out.println(valutazione.toString());
+    public boolean deleteValutazione(String idValutazione) {
+        try {
+            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+            MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("Valutazione");
+            collectionPosts.deleteOne(new Document("_id", new ObjectId(idValutazione)));
+        } catch (MongoException me) {
+            return false;
         }
-        return valutazioni;
+        return true;
     }
 
     @Override
-    public void deleteValutazioniPost(String idPost) {
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("Valutazione");
-        collectionPosts.deleteMany(new Document("_id", new ObjectId(idPost)));
+    public boolean deleteValutazioniPost(String idPost) {
+        try {
+            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+            MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("Valutazione");
+            collectionPosts.deleteMany(new Document("_id", new ObjectId(idPost)));
+        } catch (MongoException me) {
+            return false;
+        }
+        return true;
     }
 }

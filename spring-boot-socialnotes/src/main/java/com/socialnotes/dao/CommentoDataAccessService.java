@@ -28,6 +28,24 @@ public class CommentoDataAccessService implements CommentoDao {
     @Autowired
     MongoConverter converter;
 
+
+    @Override
+    public List<Commento> getCommentiPost(String idPost) {
+        LinkedList<Commento> commenti = new LinkedList<Commento>();
+        Commento commento;
+        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+        MongoCollection<org.bson.Document> collectionCommenti = mongoDatabase.getCollection("Commento");
+        Bson filterPost = Filters.eq("idPost", idPost);
+        FindIterable<Document> docCommenti = collectionCommenti.find(filterPost);
+        for (Document d : docCommenti) {
+            commento = new Commento (d.getObjectId("_id").toString(),
+                                    d.getString("testo"),
+                                    d.getString("idPost"),
+                                    d.getString("nomeUtente"));
+            commenti.add(commento);
+        }
+        return commenti;
+    }
     @Override
     public boolean setCommento(Commento commento) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
@@ -37,7 +55,7 @@ public class CommentoDataAccessService implements CommentoDao {
                     .append("_id", new ObjectId())
                     .append("testo", commento.getTesto())
                     .append("idPost", commento.getIdPost())
-                    .append("idUtente", commento.getIdUtente())
+                    .append("idUtente", commento.getNomeUtente())
             );
         } catch (MongoException me) {
             return false;
@@ -58,24 +76,14 @@ public class CommentoDataAccessService implements CommentoDao {
     }
 
     @Override
-    public List<Commento> getCommentiPost(String idPost) {
-        LinkedList<Commento> commenti = new LinkedList<Commento>();
-        Commento commento;
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionCommenti = mongoDatabase.getCollection("Commento");
-        Bson filterPost = Filters.eq("idPost", idPost);
-        FindIterable<Document> docCommenti = collectionCommenti.find(filterPost);
-        for (Document d : docCommenti) {
-            commento = new Commento (d.getObjectId("_id").toString(), d.getString("testo"), d.getString("idPost"), d.getString("idUtente"));
-            commenti.add(commento);
+    public boolean deleteCommentiPost(String idPost) {
+        try {
+            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+            MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("Commento");
+            collectionPosts.deleteMany(new Document("_id", new ObjectId(idPost)));
+        } catch (MongoException me) {
+            return false;
         }
-        return commenti;
-    }
-
-    @Override
-    public void deleteCommentiPost(String idPost) {
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("Commento");
-        collectionPosts.deleteMany(new Document("_id", new ObjectId(idPost)));
+        return true;
     }
 }

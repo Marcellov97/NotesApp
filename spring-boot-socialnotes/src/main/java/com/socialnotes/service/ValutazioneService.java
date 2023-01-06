@@ -12,9 +12,9 @@ public class ValutazioneService {
 
     public ValutazioneService(ValutazioneDao valutazioneDao) { this.valutazioneDao = valutazioneDao; }
 
-    public boolean setValutazione (Valutazione valutazione) { return valutazioneDao.setValutazione(valutazione); }
-    public void deleteValutazione (String idValutazione) { valutazioneDao.deleteValutazione(idValutazione); }
     public List<Valutazione> getValutazioniPost (String idPost) { return valutazioneDao.getValutazioniPost(idPost); }
-    public void deleteValutazioniPost (String idPost) { valutazioneDao.deleteValutazioniPost(idPost); }
+    public boolean setValutazione (Valutazione valutazione) { return valutazioneDao.setValutazione(valutazione); }
+    public boolean deleteValutazione (String idValutazione) { return valutazioneDao.deleteValutazione(idValutazione); }
+    public boolean deleteValutazioniPost (String idPost) { return valutazioneDao.deleteValutazioniPost(idPost); }
 
 }
