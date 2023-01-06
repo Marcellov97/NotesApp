@@ -1,0 +1,53 @@
+git status ->vedi lo stato dei file
+
+git add . -> aggiungi tutti i file, oppure specificare i file da aggiungere
+
+git commit -m "descrizione" -> fare la commit, ossia caricare su git la versione attuale
+
+git log --oneline -> mostra l'elenco delle commit fatte
+
+git branch nomeBranch -> creazione di un branch, senza nome dà l'elenco
+
+git branch --merged -> vedere quali branch sono uniti così si può eliminare i branch che non servono piu
+
+git branch -d nomebranch -> elimina branch
+
+git checkout nomeBranch -> ci si sposta su un altro branch
+
+git dif nomebranch..nomebranch2  -> vedere le differenze
+
+git merge nomebranch -> si inserisce il branch che si vuole unire a quello in cui ci si trova
+					(segnala se ci sono i conflitti, quindi lavorare su file diversi)
+
+git merge --abort -> cancellare il merge
+
+
+----------------------------------------------------
+
+//comandi per tornare indietro (NON FAR QUESTI COMANDI QUANDO IL CODICE è GIA STATO CARICATO IN REMOTO)
+
+git restore --staged file.txt -> togliere il file se è stato fatto l'ADD
+
+git reset --soft HEAD^ -> si torna indietro di 1 commit, se si mettono più ^ si torna indietro di
+						più commit, oppure si mette al posto di ^ si mette ~n, con n il numero
+						di commit di cui si vuole tornare indietro
+						(SOFT annulla la commit ma mette i file nella STAGING AREA)
+
+git reset --mixed HEAD^ -> come prima ma il file non solo vengono tolti dal COMMIT ma anche dall'ADD
+						(MIXED annulla la commit ma toglie i file anche dalla STAGING AREA, quindi bisogna rifare la ADD)
+
+
+---------------------------------------------------------
+//COMANDI PER GITHUB
+
+git push -u origin main  -> -u indica che questa diventa la repository di default in remoto
+						origin è il nome dell'URL dove su github ci sta la repository
+						main è il nome del branch
+
+git fetch				-> controlla la repo remota, quindi ci dice se siamo indietro
+
+git merge origin/master  -> unisce la repo locale con quella in remoto
+
+git pull                -> abbiamo sincronizzato e fatto il merge con la repo remota (fetch + merge)
+
+git clone url     -> clona la repo remote in locale
