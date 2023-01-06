@@ -38,7 +38,7 @@ export class UtenteComponent implements OnInit{
   }
 
   getUtente(): void{
-    this.utenteService.getUtente().subscribe((data: Utente) => this.utenteSingle = {
+    this.utenteService.getUtente("chp").subscribe((data: Utente) => this.utenteSingle = {
       id : data.id,
       nome : data.nome,
       cognome : data.cognome,
