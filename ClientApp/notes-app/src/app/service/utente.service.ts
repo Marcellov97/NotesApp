@@ -14,12 +14,25 @@ export class UtenteService {
   constructor( private http: HttpClient) { }
 
 
+  //*****************************************************
+  //SERVIZI HTTP UTENTE
+
   getAllUtenti(): Observable<Utente[]>{
     return this.http.get<Utente[]>(this.utenteURL+'/getAllUtenti')
   }
 
   getUtente(nomeUtente : string): Observable<Utente>{
     return this.http.get<Utente>(this.utenteURL + '/getUtente/' + nomeUtente)
+  }
+
+  //TODO da testare
+  setUtente(utente: Utente): Observable<Utente>{
+    return this.http.post<Utente>(this.utenteURL, utente)
+  }
+
+  //TODO da testare
+  deleteUtente(nomeUtente: string): Observable<unknown>{
+    return this.http.delete(this.utenteURL + '/deleteUtente/' + nomeUtente)
   }
 
 
