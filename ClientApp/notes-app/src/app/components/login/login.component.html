@@ -1,0 +1,39 @@
+<div class="login-container">
+<header class="login__header">
+  <div class = "login__header__left">
+    <img src="assets/logo-app.jpg" alt ="logo" >
+    <h2>
+      Il materiale scolastico a cui tutti vogliono ambire!
+    </h2>
+  </div>
+
+  <div class = "login__header__right">
+    <mat-card class = "login__header__right__card">
+      <mat-card-content class="login__header__right__card__content">
+        <form #form="ngForm" class="login-form"(ngSubmit)="login(form)">
+          <input type="text" name="email" ngModel placeholder="Email address" required>
+          <input type="password" name="password" ngModel placeholder="Password " required>
+
+
+          <button type="submit"
+                  class="login-button"
+                  [disabled]="form.invalid || form.pending">
+            Log in
+          </button>
+        </form>
+        <a href="#">Forgotten account?</a>
+
+        <button class ="create-account"(click)="openRegister()">Create new acccount</button>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
+
+</header>
+<footer class="login__footer">
+  <img src="assets/logoBlu-Unina.jpg">
+</footer>
+
+
+</div>
