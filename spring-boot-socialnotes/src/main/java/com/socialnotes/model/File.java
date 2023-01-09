@@ -1,19 +1,19 @@
 package com.socialnotes.model;
 
-public class FilePost {
+public class File {
     private String idFile;
     private String nome;
     private String estensione;
     private String idPost;
 
-    public FilePost (String idFile, String nome, String estensione, String idPost) {
+    public File(String idFile, String nome, String estensione, String idPost) {
         this.idFile = idFile;
         this.nome = nome;
         this.estensione = estensione;
         this.idPost = idPost;
     }
 
-    public FilePost (String nome, String estensione, String idPost) {
+    public File(String nome, String estensione, String idPost) {
         this.nome = nome;
         this.estensione = estensione;
         this.idPost = idPost;
@@ -53,7 +53,7 @@ public class FilePost {
 
     @Override
     public String toString() {
-        return "FilePost [idFile=" + idFile + ", nome=" + nome + ", estensione=" + estensione + ", idPost=" + idPost
+        return "File [idFile=" + idFile + ", nome=" + nome + ", estensione=" + estensione + ", idPost=" + idPost
                 + "]";
     }
 

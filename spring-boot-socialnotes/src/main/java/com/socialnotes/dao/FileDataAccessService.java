@@ -4,7 +4,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.socialnotes.model.FilePost;
+import com.socialnotes.model.File;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Repository;
  * TODO testare il funzionamento
  */
 
-@Repository("FilePostDao")
-public class FilePostDataAccessService implements FilePostDao {
+@Repository("FileDao")
+public class FileDataAccessService implements FileDao {
 
     @Autowired
     MongoClient client;
@@ -24,15 +24,15 @@ public class FilePostDataAccessService implements FilePostDao {
     MongoConverter converter;
 
     @Override
-    public boolean setFile(FilePost filePost) {
+    public boolean setFile(File file) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
         MongoCollection<Document> collection = mongoDatabase.getCollection("File");
         try {
             collection.insertOne(new Document()
                     .append("_id", new ObjectId())
-                    .append("testo", filePost.getNome())
-                    .append("estensione", filePost.getEstensione())
-                    .append("idPost", filePost.getIdPost())
+                    .append("testo", file.getNome())
+                    .append("estensione", file.getEstensione())
+                    .append("idPost", file.getIdPost())
             );
         } catch (MongoException me) {
             return false;
@@ -41,9 +41,14 @@ public class FilePostDataAccessService implements FilePostDao {
     }
 
     @Override
-    public void deleteFile(String idFilePost) {
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("File");
-        collectionPosts.deleteOne(new Document("_id", new ObjectId(idFilePost)));
+    public boolean deleteFile(String idFile) {
+        try {
+            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+            MongoCollection<org.bson.Document> collectionPosts = mongoDatabase.getCollection("File");
+            collectionPosts.deleteOne(new Document("_id", new ObjectId(idFile)));
+        } catch (MongoException me) {
+            return false;
+        }
+        return true;
     }
 }

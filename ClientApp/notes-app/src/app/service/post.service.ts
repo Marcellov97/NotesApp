@@ -13,6 +13,9 @@ export class PostService {
 
   constructor(private http : HttpClient) { }
 
+  //****************************************************************
+  //SERVIZI HTTP POST
+
   getAllPosts(): Observable<Post[]>{
     return this.http.get<Post[]>(this.postURL + '/getAllPosts')
   }
@@ -23,5 +26,17 @@ export class PostService {
 
   getPostsbyUtente(nomeUtente: string): Observable<Post[]>{
     return this.http.get<Post[]>(this.postURL + 'getPostsUtente/' + nomeUtente)
+  }
+
+  //TODO da testare
+  setPost(post: Post): Observable<Post>{
+    return this.http.post<Post>(this.postURL + '/setPost', post)
+  }
+
+  //TODO qua bisogna fare le update
+
+  //TODO da testare
+  deletePost(id: string): Observable<unknown>{
+    return this.http.delete(this.postURL + '/deletePost/' + id)
   }
 }

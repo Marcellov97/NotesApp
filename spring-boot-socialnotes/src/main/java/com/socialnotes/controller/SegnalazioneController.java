@@ -1,9 +1,20 @@
 package com.socialnotes.controller;
 
+import com.socialnotes.model.Segnalazione;
+import com.socialnotes.service.SegnalazioneService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path= "/post")
+@RequestMapping(path= "/segnalazione")
 public class SegnalazioneController {
+    private final SegnalazioneService segnalazioneService;
+    @Autowired
+    public SegnalazioneController(SegnalazioneService segnalazioneService) { this.segnalazioneService = segnalazioneService; }
+    @PostMapping
+    public boolean setSegnalazione (@RequestBody Segnalazione segnalazione){ return segnalazioneService.setSegnalazione(segnalazione); }
+
 }

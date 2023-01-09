@@ -26,12 +26,12 @@
         @PostMapping("setPost")
         public boolean setPost(@RequestBody Post post) { return postService.setPost(post); }
 
-        @PostMapping("updatePostValutazione/{idPost}/{valutazione}")
+        @PutMapping("updatePostValutazione/{idPost}/{valutazione}")
         public boolean updatePostValutazione(@PathVariable String idPost, @PathVariable int valutazione) {
             return postService.updatePostValutazione(idPost, valutazione);
         }
 
-        @PostMapping("updatePostSegnalazione/{idPost}")
+        @PutMapping("updatePostSegnalazione/{idPost}")
         public boolean updatePostSegnalazione(@PathVariable String idPost){ return postService.updatePostSegnalazione(idPost); }
 
         @DeleteMapping("deletePost/{idPost}")

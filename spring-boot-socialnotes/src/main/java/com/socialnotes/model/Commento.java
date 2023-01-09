@@ -1,26 +1,25 @@
 package com.socialnotes.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class Commento {
 
     private String id;
     private String testo;
     private String idPost;
-    private String idUtente;
+    private String nomeUtente;
 
-    public Commento(String id, String testo, String idPost, String idUtente) {
+    public Commento(String id, String testo, String idPost, String nomeUtente) {
         this.id = id;
         this.testo = testo;
         this.idPost = idPost;
-        this.idUtente = idUtente;
+        this.nomeUtente = nomeUtente;
     }
 
     public Commento (String testo, String idPost, String idUtente) {
         this.testo = testo;
         this.idPost = idPost;
-        this.idUtente = idUtente;
+        this.nomeUtente = idUtente;
     }
 
     public String getId() {
@@ -43,9 +42,9 @@ public class Commento {
 
     public void setIdPost(String idPost) { this.idPost = idPost; }
 
-    public String getIdUtente() { return idUtente; }
+    public String getNomeUtente() { return nomeUtente; }
 
-    public void setIdUtente(String idUtente) { this.idUtente = idUtente; }
+    public void setNomeUtente(String nomeUtente) { this.nomeUtente = nomeUtente; }
 
     @Override
     public boolean equals(Object o) {
@@ -63,6 +62,6 @@ public class Commento {
     @Override
     public String toString() {
         return "Commento [id=" + id + ", testo=" + testo + ", idPost=" + idPost + ", idUtente="
-                + idUtente + "]";
+                + nomeUtente + "]";
     }
 }
