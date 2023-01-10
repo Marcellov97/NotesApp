@@ -1,1 +1,107 @@
-<p>home works!</p>
+<div class="home-contaneir">
+  <div class="home__header">
+    <div class="home__header__left">
+      <img src="assets/logo-app.jpg" alt="logo" mat-card-avatar>
+        <div class="input">
+          <mat-icon>search_outline</mat-icon>
+          <form>
+            <input type="text" placeholder="Search Notes">
+          </form>
+        </div>
+
+    </div>
+    <div class="home__header__middle">
+      <div class="active">
+        <mat-icon>home</mat-icon>
+      </div>
+    </div>
+    <div class="home__header__right"></div>
+      <div>
+        <img src="" alt="avatar" mat-card-avatar>
+        <span class="name">name </span>
+      </div>
+    <div>
+        <mat-icon>
+          add
+        </mat-icon>
+    </div>
+    <div>
+        <mat-icon matBadge="4" matBadgeColor="primary" matBadgeOverlap="false" matBadgePosition="above after">
+            forum
+        </mat-icon>
+    </div>
+
+    <div>
+      <mat-icon matbadge="3" matbadgecolor="warn" matbadgeoverlap="false" matbadgeposition="above after">
+        notifications
+      </mat-icon>
+    </div>
+
+    <div>
+       <mat-icon [matMenuTriggerFor]="menu">expand_more </mat-icon>
+       <mat-menu #menu="matMenu">
+         <button mat-menu-item>
+           <mat-icon>exit_to_app</mat-icon>
+           Logout
+         </button>
+       </mat-menu>
+    </div>
+
+  </div>
+
+//finisce l'header
+
+ <div class="home__body">
+   <div class="home__body__sidebarLeft">
+     <div class="inside">
+       <div class="user-avatar">
+         <img
+           alt=""
+           mat-card-avatar
+           src="">
+         <span class="name">Riccardo Malato</span>
+       </div>
+       <div>
+         <mat-icon> local_hospital</mat-icon>
+         <span class="covid">COVID-19 Information Center</span>
+       </div>
+
+       <div>
+         <mat-icon>flag</mat-icon>
+         <span>Pages</span>
+       </div>
+
+       <div>
+         <mat-icon>people</mat-icon>
+         <span>Friends</span>
+       </div>
+
+       <div>
+         <mat-icon> chat</mat-icon>
+         <span>Messenger</span>
+       </div>
+
+       <div>
+         <mat-icon>store</mat-icon>
+         <span>Marketplace</span>
+       </div>
+
+       <div>
+         <mat-icon>video_library</mat-icon>
+         <span>Videos</span>
+       </div>
+
+       <div>
+         <mat-icon class="see-more">expand_more</mat-icon>
+         <span>See More</span>
+       </div>
+
+     </div>
+   </div>
+
+ </div>
+
+
+
+
+</div>
