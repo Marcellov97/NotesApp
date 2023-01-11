@@ -1,10 +1,10 @@
 package com.socialnotes.dao;
 
-import com.socialnotes.model.File;
+import com.socialnotes.model.FilePost;
 
 public interface FileDao {
 
-    boolean setFile (File file);
+    boolean setFile (FilePost file);
     boolean deleteFile (String idFilePost);
 
 }

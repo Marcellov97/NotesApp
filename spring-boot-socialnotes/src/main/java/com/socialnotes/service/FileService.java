@@ -1,7 +1,7 @@
 package com.socialnotes.service;
 
 import com.socialnotes.dao.FileDao;
-import com.socialnotes.model.File;
+import com.socialnotes.model.FilePost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class FileService {
     @Autowired
     public FileService(@Qualifier("FileDao") FileDao fileDao) { this.fileDao = fileDao; }
 
-    public boolean setFile (File file) { return fileDao.setFile(file);}
+    public boolean setFile (FilePost file) { return fileDao.setFile(file);}
     public boolean deleteFile (String idFile) { return fileDao.deleteFile(idFile);}
 
 }

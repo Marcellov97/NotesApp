@@ -40,7 +40,7 @@ public class ValutazioneDataAccessService implements ValutazioneDao {
             valutazione = new Valutazione (d.getObjectId("_id").toString(),
                     d.getInteger("valutazione"),
                     d.getString("idPost"),
-                    d.getString("idUtente"));
+                    d.getString("nomeUtente"));
             valutazioni.add(valutazione);
             System.out.println(valutazione.toString());
         }
@@ -56,7 +56,7 @@ public class ValutazioneDataAccessService implements ValutazioneDao {
                     .append("_id", new ObjectId())
                     .append("valutazione", valutazione.getValutazione())
                     .append("idPost", valutazione.getIdPost())
-                    .append("idUtente", valutazione.getIdUtente())
+                    .append("nomeUtente", valutazione.getNomeUtente())
             );
         } catch (MongoException me) {
             return false;

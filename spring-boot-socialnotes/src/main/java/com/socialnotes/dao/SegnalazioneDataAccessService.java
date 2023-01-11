@@ -32,7 +32,7 @@ public class SegnalazioneDataAccessService implements SegnalazioneDao {
                     .append("_id", new ObjectId())
                     .append("testo", segnalazione.getTesto())
                     .append("idPost", segnalazione.getIdPost())
-                    .append("idUtente", segnalazione.getIdUtente())
+                    .append("nomeUtente", segnalazione.getNomeUtente())
             );
         } catch (MongoException me) {
             return false;

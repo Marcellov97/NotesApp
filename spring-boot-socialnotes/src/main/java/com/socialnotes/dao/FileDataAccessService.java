@@ -4,7 +4,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.socialnotes.model.File;
+import com.socialnotes.model.FilePost;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class FileDataAccessService implements FileDao {
     MongoConverter converter;
 
     @Override
-    public boolean setFile(File file) {
+    public boolean setFile(FilePost file) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
         MongoCollection<Document> collection = mongoDatabase.getCollection("File");
         try {
