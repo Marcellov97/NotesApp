@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Utente} from "../../model/utente";
 import {UtenteService} from "../../service/utente.service";
-import {Form} from "@angular/forms";
+import { NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit{
     password : 'fozzanapolisempre',
     moderatore : true};
 
+  prop = '';
+
 
   constructor(private utenteService : UtenteService, private router : Router) {
   }
@@ -26,8 +28,16 @@ export class RegisterComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  registerFunc(f : Form){
-    
+  registerFunc(f : NgForm){
+    //TODO fare un controllo se nel database già esiste un nome utente uguale
+
+    this.utente.nome = f.value.nome;
+    this.utente.cognome = f.value.cognome;
+    this.utente.nomeUtente = f.value.nickname;
+    this.utente.email = f.value.email;
+    this.utente.password = f.value.password;
+    this.utente.moderatore = false;
+    this.prop = 'qualcosa non va'
   }
 
 }
