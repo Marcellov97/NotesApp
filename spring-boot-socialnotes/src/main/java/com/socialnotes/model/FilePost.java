@@ -1,22 +1,25 @@
 package com.socialnotes.model;
 
-public class File {
+public class FilePost {
     private String idFile;
     private String nome;
     private String estensione;
     private String idPost;
 
-    public File(String idFile, String nome, String estensione, String idPost) {
+    public FilePost(String idFile, String nome, String estensione, String idPost) {
         this.idFile = idFile;
         this.nome = nome;
         this.estensione = estensione;
         this.idPost = idPost;
     }
 
-    public File(String nome, String estensione, String idPost) {
+    public FilePost(String nome, String estensione, String idPost) {
         this.nome = nome;
         this.estensione = estensione;
         this.idPost = idPost;
+    }
+
+    public FilePost() {
     }
 
     public String getIdFile() {

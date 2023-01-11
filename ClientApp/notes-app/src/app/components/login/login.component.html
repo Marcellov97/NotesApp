@@ -11,19 +11,19 @@
     <mat-card class = "login__header__right__card">
       <mat-card-content class="login__header__right__card__content">
         <form #form="ngForm" class="login-form"(ngSubmit)="login(form)">
-          <input type="text" name="email" ngModel placeholder="Email address" required>
+          <input type="text" name="nickname" ngModel placeholder="Nome Utente" required>
           <input type="password" name="password" ngModel placeholder="Password " required>
 
 
           <button type="submit"
                   class="login-button"
                   [disabled]="form.invalid || form.pending">
-            Log in
+            log in
           </button>
         </form>
-        <a href="#">Forgotten account?</a>
+        <a href="#">{{prop}}</a>
 
-        <button class ="create-account"(click)="openRegister()">Create new acccount</button>
+        <button class ="create-account"(click)="openRegister()">Create new account</button>
       </mat-card-content>
     </mat-card>
 

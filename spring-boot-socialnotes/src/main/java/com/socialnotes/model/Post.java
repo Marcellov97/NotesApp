@@ -24,6 +24,9 @@ public class Post {
         this.nomeUtente = nomeUtente;
     }
 
+    public Post() {
+    }
+
     public String getId () {
         return id;
     }

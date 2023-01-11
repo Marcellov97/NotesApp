@@ -17,13 +17,16 @@
         @GetMapping("getAllPosts")
         public List<Post> getAllPost () { return postService.getAllPost(); }
 
+        @GetMapping("getPostsString/{string}")
+        public List<Post> getPostsString(@PathVariable String string) { return postService.getPostsString(string); }
+
         @GetMapping("getPostsValutazione/{valutazione}")
         public List<Post> getPostsValutazione (@PathVariable String valutazione) { return postService.getPostsValutazione(valutazione); }
 
         @GetMapping("getPostsUtente/{nomeUtente}")
         public List<Post> getPostsUtente (@PathVariable String nomeUtente) { return postService.getPostsUtente(nomeUtente); }
 
-        @PostMapping("setPost")
+        @PostMapping
         public boolean setPost(@RequestBody Post post) { return postService.setPost(post); }
 
         @PutMapping("updatePostValutazione/{idPost}/{valutazione}")

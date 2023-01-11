@@ -22,6 +22,9 @@ public class Commento {
         this.nomeUtente = idUtente;
     }
 
+    public Commento() {
+    }
+
     public String getId() {
         return id;
     }
