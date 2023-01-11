@@ -7,7 +7,7 @@ import {MaterialModule} from './shared/material/material.module';
 import {AppRoutingModule} from './app-routing.module';
 import {LoginComponent} from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 import {HomeModule} from './components/home/home.module';
@@ -20,6 +20,7 @@ import { RegisterComponent } from './components/register/register.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
