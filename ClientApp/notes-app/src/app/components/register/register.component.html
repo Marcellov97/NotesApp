@@ -6,18 +6,25 @@
     <p>It's quick and easy</p>
   </div>
   <div class ="body">
-    <form #form = "ngForm">
+    <form #form = "ngForm" (ngSubmit)="registerFunc(form)">
       <div class="user_name">
-        <input type="text" placeholder="Firstname" name="fname" NgModel>
-        <input type="text" placeholder="LastName" name="lname" NgModel>
+        <input type="text" placeholder="Firstname" name="fname" NgModel required>
+        <input type="text" placeholder="LastName" name="lname" NgModel required>
       </div>
       <div class="email_password">
-        <input type="text" placeholder="Email" name="email" NgModel>
-        <input type="text" placeholder="Password" name="fname" NgModel>
+        <input type="text" placeholder="Nome Utente" name="nickname" NgModel required>
+        <input type="text" placeholder="Email" name="email" NgModel required>
+        <input type="text" placeholder="Password" name="fname" NgModel required>
       </div>
 
-      <button type="submit" class="submit-button" [mat-dialog-close]="form.value">Sign Up</button>
+      <button type="submit" class="submit-button" [mat-dialog-close]="form.value" [disabled]="form.invalid || form.pending">Sign Up</button>
     </form>
   </div>
+
+  {{utente.nome}}
+  {{utente.cognome}}
+  {{utente.nomeUtente}}
+  {{utente.email}}
+  {{utente.password}}
 
 </section>
