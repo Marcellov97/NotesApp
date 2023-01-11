@@ -40,7 +40,9 @@ export class RegisterComponent implements OnInit{
     this.prop = 'qualcosa non va'
 
     //TODO vedere se effettivamente salva l'utente
-    this.utenteService.setUtente(this.utente);
+    this.utenteService.setUtente(this.utente).subscribe((data: Utente) => {
+      this.utente = data;
+    });
 
     this.router.navigate(['/home']);
   }
