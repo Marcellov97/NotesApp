@@ -4,19 +4,22 @@ public class Valutazione {
     private String idValutazione;
     private Integer valutazione;
     private String idPost;
-    private String idUtente;
+    private String nomeUtente;
 
-    public Valutazione (String idValutazione, Integer valutazione, String idPost, String idUtente) {
+    public Valutazione (String idValutazione, Integer valutazione, String idPost, String nomeUtente) {
         this.idValutazione = idValutazione;
         this.valutazione = valutazione;
         this.idPost = idPost;
-        this.idUtente = idUtente;
+        this.nomeUtente = nomeUtente;
     }
 
-    public Valutazione (Integer valutazione, String idPost, String idUtente) {
+    public Valutazione (Integer valutazione, String idPost, String nomeUtente) {
         this.valutazione = valutazione;
         this.idPost = idPost;
-        this.idUtente = idUtente;
+        this.nomeUtente = nomeUtente;
+    }
+
+    public Valutazione() {
     }
 
     public String getIdPost() {
@@ -27,12 +30,12 @@ public class Valutazione {
         this.idPost = idPost;
     }
 
-    public String getIdUtente() {
-        return idUtente;
+    public String getNomeUtente() {
+        return nomeUtente;
     }
 
-    public void setIdUtente(String idUtente) {
-        this.idUtente = idUtente;
+    public void setNomeUtente(String nomeUtente) {
+        this.nomeUtente = nomeUtente;
     }
 
     public Valutazione (Integer valutazione) {
@@ -58,7 +61,7 @@ public class Valutazione {
     @Override
     public String toString() {
         return "Valutazione [idValutazione=" + idValutazione + ", valutazione=" + valutazione + ", idPost=" + idPost
-                + ", idUtente=" + idUtente + "]";
+                + ", nomeUtente=" + nomeUtente + "]";
     }
 
 }

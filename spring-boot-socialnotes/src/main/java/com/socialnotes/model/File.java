@@ -19,6 +19,9 @@ public class File {
         this.idPost = idPost;
     }
 
+    public File() {
+    }
+
     public String getIdFile() {
         return idFile;
     }
