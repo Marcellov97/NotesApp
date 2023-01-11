@@ -38,6 +38,11 @@ export class RegisterComponent implements OnInit{
     this.utente.password = f.value.password;
     this.utente.moderatore = false;
     this.prop = 'qualcosa non va'
+
+    //TODO vedere se effettivamente salva l'utente
+    this.utenteService.setUtente(this.utente);
+
+    this.router.navigate(['/home']);
   }
 
 }
