@@ -23,7 +23,7 @@
         @GetMapping("getPostsUtente/{nomeUtente}")
         public List<Post> getPostsUtente (@PathVariable String nomeUtente) { return postService.getPostsUtente(nomeUtente); }
 
-        @PostMapping("setPost")
+        @PostMapping
         public boolean setPost(@RequestBody Post post) { return postService.setPost(post); }
 
         @PutMapping("updatePostValutazione/{idPost}/{valutazione}")

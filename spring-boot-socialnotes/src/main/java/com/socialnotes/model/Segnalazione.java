@@ -4,19 +4,22 @@ public class Segnalazione {
     private String idSegnalazione;
     private String testo;
     private String idPost;
-    private String idUtente;
+    private String nomeUtente;
 
-    public Segnalazione (String idSegnalazione, String testo, String idPost, String idUtente) {
+    public Segnalazione (String idSegnalazione, String testo, String idPost, String nomeUtente) {
         this.idSegnalazione = idSegnalazione;
         this.testo = testo;
         this.idPost = idPost;
-        this.idUtente = idUtente;
+        this.nomeUtente = nomeUtente;
     }
 
-    public Segnalazione (String testo, String idPost, String idUtente) {
+    public Segnalazione (String testo, String idPost, String nomeUtente) {
         this.testo = testo;
         this.idPost = idPost;
-        this.idUtente = idUtente;
+        this.nomeUtente = nomeUtente;
+    }
+
+    public Segnalazione() {
     }
 
     public String getIdPost() {
@@ -27,12 +30,12 @@ public class Segnalazione {
         this.idPost = idPost;
     }
 
-    public String getIdUtente() {
-        return idUtente;
+    public String getNomeUtente() {
+        return nomeUtente;
     }
 
-    public void setIdUtente(String idUtente) {
-        this.idUtente = idUtente;
+    public void setNomeUtente(String nomeUtente) {
+        this.nomeUtente = nomeUtente;
     }
 
     public String getIdSegnalazione() {
@@ -54,7 +57,7 @@ public class Segnalazione {
     @Override
     public String toString() {
         return "Segnalazione [idSegnalazione=" + idSegnalazione + ", testo=" + testo + ", idPost=" + idPost
-                + ", idUtente=" + idUtente + "]";
+                + ", nomeUtente=" + nomeUtente + "]";
     }
 
 }

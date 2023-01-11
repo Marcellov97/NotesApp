@@ -34,6 +34,9 @@
             this.moderatore = moderatore;
         }
 
+        public Utente() {
+        }
+
         public String getId() {
             return id;
         }

@@ -55,7 +55,7 @@ public class CommentoDataAccessService implements CommentoDao {
                     .append("_id", new ObjectId())
                     .append("testo", commento.getTesto())
                     .append("idPost", commento.getIdPost())
-                    .append("idUtente", commento.getNomeUtente())
+                    .append("nomeUtente", commento.getNomeUtente())
             );
         } catch (MongoException me) {
             return false;
