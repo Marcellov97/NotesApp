@@ -1,6 +1,6 @@
 package com.socialnotes.controller;
 
-import com.socialnotes.model.File;
+import com.socialnotes.model.FilePost;
 import com.socialnotes.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ public class FileController {
     @Autowired
     public FileController(FileService fileService) { this.fileService = fileService; }
     @PostMapping
-    boolean setFile (@RequestBody File file) { return fileService.setFile(file); }
+    boolean setFile (@RequestBody FilePost file) { return fileService.setFile(file); }
 
     @DeleteMapping("deleteFile/{idFile}")
     boolean deleteFile (@PathVariable String idFile) { return fileService.deleteFile(idFile); }
