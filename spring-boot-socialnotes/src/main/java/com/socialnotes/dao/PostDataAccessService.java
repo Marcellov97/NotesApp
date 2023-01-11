@@ -17,6 +17,7 @@
     import org.springframework.stereotype.Repository;
     import java.util.LinkedList;
     import java.util.List;
+    import java.util.regex.Pattern;
 
     /**
      * TODO finire di testare il funzionamento
@@ -46,6 +47,29 @@
                 posts.add(post);
             }
             //result.forEach((Block<? super Document>) doc -> posts.add(converter.read(Post.class, doc)));
+            return posts;
+        }
+
+        @Override
+        public List<Post> getPostsString(String string) {
+            List<Post> posts = new LinkedList<>();
+            Post post;
+            try {
+                MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+                MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Post");
+                Pattern regex = Pattern.compile(string, Pattern.CASE_INSENSITIVE);
+                Bson filter = Filters.regex("descrizione", regex);
+                FindIterable<Document> docPosts = collection.find(filter);
+                for (Document d : docPosts) {
+                    post = new Post (d.getObjectId("_id").toString(),
+                            d.getString("descrizione"),
+                            d.getInteger("valutazione"),
+                            d.getBoolean("segnalato"),
+                            d.getString("nomeUtente"));
+                    posts.add(post);
+                }
+            } catch (MongoException me) {
+            }
             return posts;
         }
 

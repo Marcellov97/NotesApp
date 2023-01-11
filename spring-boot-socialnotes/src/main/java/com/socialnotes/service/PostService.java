@@ -14,6 +14,7 @@ public class PostService {
     public PostService(@Qualifier("PostDao") PostDao postDao) { this.postDao = postDao; }
 
     public List<Post> getAllPost () { return postDao.getAllPost(); }
+    public List<Post> getPostsString(String string) { return postDao.getPostsString(string); }
     public List<Post> getPostsValutazione (String valutazione) { return postDao.getPostsValutazione(valutazione); }
     public List<Post> getPostsUtente (String nomeUtente) { return postDao.getPostsUtente(nomeUtente); }
     public boolean setPost(Post post) { return postDao.setPost(post); }

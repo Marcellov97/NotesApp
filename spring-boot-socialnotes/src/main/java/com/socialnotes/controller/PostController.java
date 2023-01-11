@@ -17,6 +17,9 @@
         @GetMapping("getAllPosts")
         public List<Post> getAllPost () { return postService.getAllPost(); }
 
+        @GetMapping("getPostsString/{string}")
+        public List<Post> getPostsString(@PathVariable String string) { return postService.getPostsString(string); }
+
         @GetMapping("getPostsValutazione/{valutazione}")
         public List<Post> getPostsValutazione (@PathVariable String valutazione) { return postService.getPostsValutazione(valutazione); }
 

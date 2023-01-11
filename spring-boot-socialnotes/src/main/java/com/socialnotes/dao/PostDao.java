@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface PostDao {
     List<Post> getAllPost ();
+    List<Post> getPostsString(String string);
     List<Post> getPostsValutazione (String valutazione);
     List<Post> getPostsUtente (String nomeUtente);
     //List<Post> getPostsCategoria (Categoria categoria;
