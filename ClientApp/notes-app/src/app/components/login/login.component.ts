@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UtenteService} from "../../service/utente.service";
 import {Utente} from "../../model/utente";
 import {Route, Router, RouterModule} from "@angular/router";
+import {AppStateService} from "../../service/app-state.service";
 
 @Component({
   selector: 'app-login',
@@ -23,15 +24,17 @@ export class LoginComponent implements OnInit {
 
   private access : boolean = false;
 
-  prop = ''; //TODO rimuovere questa variabile
+  prop = '';
 
 
   //****************************************************************
   //METODI
 
-  constructor(private utenteService : UtenteService, private router : Router) {
+  constructor(private utenteService : UtenteService, private router : Router, private appState : AppStateService) {
   }
   ngOnInit(): void{
+
+    this.appState.setLogged(false);
 
   }
 
@@ -43,12 +46,11 @@ export class LoginComponent implements OnInit {
       this.access = this.controlPassword(form.value.password);  //richiamo la funzione controlla password
 
       if(this.access){
-        this.prop = 'loggato';
-        //TODO qua bisogna mettere come url /home alla pagina home
+        this.appState.setUtenteLogged(this.utente);
+        this.appState.setLogged(true);
         this.router.navigate(['/home']);
       }else{
         this.prop = 'accesso negato';
-        //TODO scrivere da qualche parte che l'accesso è negato
       }
     })
   }
@@ -67,7 +69,6 @@ export class LoginComponent implements OnInit {
   //FUNZIONE PER APRIRE LA PAGINA DI REGISTRAZIONE
   openRegister():void {
 
-    //TODO bisogna inserire nel routing-module il path per la pagina di registrazione
     this.router.navigate(['/registration']);
 
   }
