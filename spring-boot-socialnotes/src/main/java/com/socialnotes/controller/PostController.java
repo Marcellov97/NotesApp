@@ -8,6 +8,7 @@
 
     @RestController
     @RequestMapping(path= "/post")
+    @CrossOrigin
     public class PostController {
         private final PostService postService;
 
