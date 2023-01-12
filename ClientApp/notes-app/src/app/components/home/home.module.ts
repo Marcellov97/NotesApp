@@ -20,5 +20,6 @@ import{MatIconModule} from '@angular/material/icon'
     MatButtonModule
   ]
 })
+
 export class HomeModule {
 }
