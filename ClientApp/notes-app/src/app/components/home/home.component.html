@@ -158,20 +158,19 @@
         </mat-card>
 
         <!--Loop Through All Posts From Database and Display-->
-        <!--
+
         <mat-card *ngFor="let p of posts" class="posts">
           <mat-card-header class="posts__header">
-            <img alt="{{ p?.title }}" mat-card-avatar [src]="p?.avatar">
             <div class="posts__header__right">
-              <span>{{ p?.time?.seconds * 1000 | date:'shortTime' }}</span>
-              <h3>{{ p?.title }}</h3>
+
+              <h3>{{ p?.nomeUtente }}</h3>
             </div>
           </mat-card-header>
           <mat-card-content class="posts__body">
-            <p>{{ p?.message }}</p>
+            <p>{{ p?.descrizione}}</p>
           </mat-card-content>
         </mat-card>
-        -->
+
 
       </div>
 

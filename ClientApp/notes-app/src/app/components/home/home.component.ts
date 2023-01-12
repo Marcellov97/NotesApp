@@ -1,5 +1,9 @@
-import { Component,OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Post} from "../../model/post";
+import {PostService} from "../../service/post.service";
+import { NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,8 +12,19 @@ import {NgForm} from '@angular/forms';
 
 
 export class HomeComponent implements OnInit {
-  ngOnInit(): void {
+  //selectedPost? : Post;
+  posts : Post[] = [];
 
+  constructor(private postService : PostService) {
+  }
+
+  getPosts():void {
+    this.postService.getAllPosts().subscribe((data:Post[])=>{
+      this.posts=data;
+    })
+  }
+  ngOnInit(): void {
+    this.getPosts();
   }
 
 
