@@ -3,6 +3,8 @@ import {Post} from "../../model/post";
 import {PostService} from "../../service/post.service";
 import { NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {Utente} from "../../model/utente";
+import {AppStateService} from "../../service/app-state.service";
 
 @Component({
   selector: 'app-home',
@@ -14,8 +16,11 @@ import {Router} from "@angular/router";
 export class HomeComponent implements OnInit {
   //selectedPost? : Post;
   posts : Post[] = [];
+  utenteLogged : Utente = {
+    cognome: "", email: "", id: "", moderatore: false, nome: "", nomeUtente: "", password: ""
+  }
 
-  constructor(private postService : PostService, private router: Router) {
+  constructor(private postService : PostService, private router: Router, private appState : AppStateService) {
   }
 
   getPosts():void {
@@ -25,6 +30,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getPosts();
+    this.utenteLogged = this.appState.getUtenteLogged();
   }
 
 
