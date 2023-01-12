@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit{
 
     this.utenteService.setUtente(this.utente).subscribe((data: Utente) => {
 
-      
+
       this.utente = data;
 
     });
