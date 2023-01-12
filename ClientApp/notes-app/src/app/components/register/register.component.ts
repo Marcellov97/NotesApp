@@ -3,6 +3,7 @@ import {Utente} from "../../model/utente";
 import {UtenteService} from "../../service/utente.service";
 import { NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AppStateService} from "../../service/app-state.service";
 
 @Component({
   selector: 'app-register',
@@ -22,10 +23,11 @@ export class RegisterComponent implements OnInit{
   prop = '';
 
 
-  constructor(private utenteService : UtenteService, private router : Router) {
+  constructor(private utenteService : UtenteService, private router : Router, private appState : AppStateService) {
   }
 
   ngOnInit(): void {
+    this.appState.setLogged(false);
   }
 
   registerFunc(f : NgForm){
@@ -37,14 +39,24 @@ export class RegisterComponent implements OnInit{
     this.utente.email = f.value.email;
     this.utente.password = f.value.password;
     this.utente.moderatore = false;
-    this.prop = 'qualcosa non va'
 
-    //TODO vedere se effettivamente salva l'utente
     this.utenteService.setUtente(this.utente).subscribe((data: Utente) => {
-      this.utente = data;
+
+      //TODO risolvere problema che se entra dopo la registrazione non salva i dati
+      this.appState.setUtenteLogged(data);
+      this.appState.setLogged(true);
+
     });
 
     this.router.navigate(['/home']);
+
+
+
+
+
+
+
+
   }
 
 }

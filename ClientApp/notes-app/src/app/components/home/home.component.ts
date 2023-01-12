@@ -30,7 +30,12 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getPosts();
-    this.utenteLogged = this.appState.getUtenteLogged();
+    this.utenteLogged.nome = <string>this.appState.getNome();
+    this.utenteLogged.cognome = <string>this.appState.getCognome();
+    this.utenteLogged.nomeUtente = <string>this.appState.getNomeUtente();
+    this.utenteLogged.id = <string>this.appState.getID();
+    this.utenteLogged.email = <string>this.appState.getMail();
+
   }
 
 
@@ -39,6 +44,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
+    this.appState.clearAll();
     this.router.navigate(['/login']);
 
   }

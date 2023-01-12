@@ -8,8 +8,10 @@ export class AppStateService {
 
   //VARIABILI
 
+  //TODO se si aggiorna la pagina si perde il dato
+
   private utente : Utente = {
-    cognome: "", email: "", id: "", moderatore: false, nome: "", nomeUtente: "", password: ""
+    cognome: "", email: "", id: "idprova", moderatore: false, nome: "", nomeUtente: "", password: ""
   }
 
   private logged : boolean = false;
@@ -19,12 +21,35 @@ export class AppStateService {
 
   constructor() { }
 
-  getUtenteLogged(): Utente{
-    return this.utente
+  getNome(): string | null {
+    return localStorage.getItem("nomeLogged")
   }
 
+  getCognome(): string | null {
+    return localStorage.getItem("cognomeLogged")
+  }
+
+  getNomeUtente(): string | null {
+    return localStorage.getItem("nomeUtenteLogged")
+  }
+
+  getID(): string | null{
+    return localStorage.getItem("idLogged")
+  }
+
+  getMail(): string | null{
+    return localStorage.getItem("mailLogged")
+  }
+
+
+
   setUtenteLogged(dato : Utente){
-    this.utente = dato;
+    localStorage.setItem("nomeLogged", dato.nome);
+    localStorage.setItem("cognomeLogged", dato.cognome);
+    localStorage.setItem("idLogged", dato.id);
+    localStorage.setItem("nomeUtenteLogged", dato.nomeUtente);
+    localStorage.setItem("mailLogged", dato.email);
+    localStorage.setItem("password", dato.password);
   }
 
   isLogged():boolean{
@@ -34,4 +59,9 @@ export class AppStateService {
   setLogged(cond : boolean){
     this.logged = cond;
   }
+
+  clearAll(){
+    localStorage.clear();
+  }
+
 }
