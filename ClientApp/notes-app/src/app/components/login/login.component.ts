@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
 
       if(this.access){
         this.appState.setUtenteLogged(this.utente);
-        this.appState.setLogged(true);
         this.router.navigate(['/home']);
       }else{
         this.prop = 'accesso negato';

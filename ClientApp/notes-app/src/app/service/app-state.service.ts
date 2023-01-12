@@ -8,7 +8,6 @@ export class AppStateService {
 
   //VARIABILI
 
-  //TODO se si aggiorna la pagina si perde il dato
 
   private utente : Utente = {
     cognome: "", email: "", id: "idprova", moderatore: false, nome: "", nomeUtente: "", password: ""

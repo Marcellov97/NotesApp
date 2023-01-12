@@ -42,13 +42,12 @@ export class RegisterComponent implements OnInit{
 
     this.utenteService.setUtente(this.utente).subscribe((data: Utente) => {
 
-      //TODO risolvere problema che se entra dopo la registrazione non salva i dati
-      this.appState.setUtenteLogged(data);
-      this.appState.setLogged(true);
+      
+      this.utente = data;
 
     });
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
 
 
 
