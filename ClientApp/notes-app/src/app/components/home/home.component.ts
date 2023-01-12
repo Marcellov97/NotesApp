@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   //selectedPost? : Post;
   posts : Post[] = [];
 
-  constructor(private postService : PostService) {
+  constructor(private postService : PostService, private router: Router) {
   }
 
   getPosts():void {
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   logout() {
+    this.router.navigate(['/login']);
 
   }
 }
