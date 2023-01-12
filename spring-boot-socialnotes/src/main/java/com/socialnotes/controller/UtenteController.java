@@ -8,8 +8,11 @@
     import org.springframework.web.bind.annotation.RestController;
     import java.util.List;
 
+
+
     @RestController
     @RequestMapping(path= "/utente")
+    @CrossOrigin //annotazione per il cross domain tra client e server
     public class UtenteController {
         private final UtenteService utenteService;
 

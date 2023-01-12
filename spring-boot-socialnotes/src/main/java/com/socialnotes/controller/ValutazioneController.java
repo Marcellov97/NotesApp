@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path= "/valutazione")
+@CrossOrigin //annotazione per il cross domain tra client e server
 public class ValutazioneController {
 
     private final ValutazioneService valutazioneService;

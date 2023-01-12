@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path= "/file")
+@CrossOrigin //annotazione per il cross domain tra client e server
 public class FileController {
     private final FileService fileService;
     @Autowired

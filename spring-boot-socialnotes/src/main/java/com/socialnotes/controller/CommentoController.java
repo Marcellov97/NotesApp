@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path= "/commento")
+@CrossOrigin // annotazione per il cross domain tra client e server
 public class CommentoController {
     private final CommentoService commentoService;
     @Autowired
