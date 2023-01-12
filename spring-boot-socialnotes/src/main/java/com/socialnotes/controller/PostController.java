@@ -8,7 +8,7 @@
 
     @RestController
     @RequestMapping(path= "/post")
-    @CrossOrigin
+    @CrossOrigin //annotazione per il cross domain tra client e server
     public class PostController {
         private final PostService postService;
 
