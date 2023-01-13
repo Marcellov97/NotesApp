@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import{MaterialModule} from '../../shared/material/material.module'
 import{MatIconModule} from '@angular/material/icon'
+import {AppModule} from "../../app.module";
 @NgModule({
   declarations: [
     HomeComponent
@@ -17,7 +18,8 @@ import{MatIconModule} from '@angular/material/icon'
     MatBadgeModule,
     FormsModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    AppModule
   ]
 })
 

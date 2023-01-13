@@ -12,11 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {HomeModule} from './components/home/home.module';
 import { RegisterComponent } from './components/register/register.component';
+import { PostComponent } from './components/post/post.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +27,11 @@ import { RegisterComponent } from './components/register/register.component';
     MaterialModule,
     AppRoutingModule,
     FormsModule,
-    HomeModule
   ],
   providers: [],
+  exports: [
+    PostComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

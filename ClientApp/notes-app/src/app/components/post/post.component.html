@@ -1,0 +1,24 @@
+
+<div class="card">
+  <div class="nomeUtente">
+    <p>{{post.nomeUtente}}</p>
+  </div>
+  <div class="descrizionePost">
+    <p>{{post.descrizione}}</p>
+  </div>
+  FILE CONDIVISI
+  <p>{{post.valutazione}}</p>
+  <div class="numCommenti">
+    <hr>
+    <p>{{commenti.length}} commenti</p>
+    <hr>
+  </div>
+
+  <div *ngFor="let c of commenti">
+    <p>{{c?.testo}}</p>
+  </div>
+
+
+
+
+</div>

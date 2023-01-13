@@ -14,7 +14,7 @@ import {AppStateService} from "../../service/app-state.service";
 
 
 export class HomeComponent implements OnInit {
-  //selectedPost? : Post;
+
   posts : Post[] = [];
   utenteLogged : Utente = {
     cognome: "", email: "", id: "", moderatore: false, nome: "", nomeUtente: "", password: ""

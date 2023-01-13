@@ -169,15 +169,8 @@
         <!--Loop Through All Posts From Database and Display-->
 
         <mat-card *ngFor="let p of posts" class="posts">
-          <mat-card-header class="posts__header">
-            <div class="posts__header__right">
+          <app-post [post]="p"></app-post>
 
-              <h3>{{ p?.nomeUtente }}</h3>
-            </div>
-          </mat-card-header>
-          <mat-card-content class="posts__body">
-            <p>{{ p?.descrizione}}</p>
-          </mat-card-content>
         </mat-card>
 
 
