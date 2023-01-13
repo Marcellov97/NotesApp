@@ -1,28 +1,37 @@
 <section class="register">
   <div class="header">
     <h3>
-      Sign up
+      Registrazione
     </h3>
-    <p>It's quick and easy</p>
+    <p>E' facile e veloce</p>
   </div>
   <div class ="body">
     <form #form="ngForm" class="login-form"(ngSubmit)="registerFunc(form)">
-      <input type="text" name="nome" ngModel placeholder="First Name" required>
-      <input type="text" name="cognome" ngModel placeholder="Last Name" required>
-      <input type="text" name="nickname" ngModel placeholder="Username" required>
-      <input type="text" name="email" ngModel placeholder="Email" required>
-      <input type="password" name="password" ngModel placeholder="Password" required>
 
+      <div class="user_name">
+      <input type="text" name="nome" ngModel placeholder="Nome" required>
+      <input type="text" name="cognome" ngModel placeholder="Cognome" required>
+      </div>
+
+      <div class= "user_username">
+
+        <input type="text" name="username" ngModel placeholder="Username" required>
+      </div>
+
+      <div class ="email_password">
+        <input type="text" name="email" ngModel placeholder="Email" required>
+        <input type="password" name="password" ngModel placeholder="Password" required>
+      </div>
 
       <button type="submit"
-              class="login-button"
+              class="submit-button"
               [disabled]="form.invalid || form.pending">
-        register
+        Registrati
       </button>
     </form>
   </div>
 
 
-  {{prop}}
+
 
 </section>
