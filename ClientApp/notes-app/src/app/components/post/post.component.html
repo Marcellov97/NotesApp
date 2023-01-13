@@ -1,24 +1,36 @@
 
+<!-- Carta del post -->
 <div class="card">
+
+  <!-- Nome dell'utente che ha fatto il post -->
   <div class="nomeUtente">
     <p>{{post.nomeUtente}}</p>
   </div>
+
+  <!-- Descrizione del post -->
   <div class="descrizionePost">
     <p>{{post.descrizione}}</p>
   </div>
+
+  <!-- TODO Qua devono essere messi i file che verranno condivisi -->
   FILE CONDIVISI
+  <!-- Valutazione del post -->
   <p>{{post.valutazione}}</p>
+
+  <!-- Sezione per il numero di commenti -->
   <div class="numCommenti">
     <hr>
     <p>{{commenti.length}} commenti</p>
     <hr>
   </div>
 
+  <!-- Elenco dei commenti, con Utente e testo del commento -->
   <div *ngFor="let c of commenti">
-    <p>{{c?.testo}}</p>
+    <div class="commento">
+      <p class="nomeUtenteCommento">{{c?.nomeUtente}}</p>
+      <p>{{c?.testo}}</p>
+    </div>
+
   </div>
-
-
-
 
 </div>
