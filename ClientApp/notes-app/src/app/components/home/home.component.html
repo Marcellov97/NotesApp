@@ -166,11 +166,10 @@
           -->
         </mat-card>
 
-        <!--Loop Through All Posts From Database and Display-->
 
+        <!--Loop Through All Posts From Database and Display-->
         <mat-card *ngFor="let p of posts" class="posts">
           <app-post [post]="p"></app-post>
-
         </mat-card>
 
 
