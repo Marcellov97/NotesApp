@@ -26,11 +26,32 @@
 
   <!-- Elenco dei commenti, con Utente e testo del commento -->
   <div *ngFor="let c of commenti">
-    <div class="commento">
-      <p class="nomeUtenteCommento">{{c?.nomeUtente}}</p>
-      <p>{{c?.testo}}</p>
+
+    <div class="boxCommento">
+          <span><small class="nomeUtenteCommento">{{c?.nomeUtente}}</small><small class="commento">{{c?.testo}}</small></span>
+      <div>
+      </div>
+
+      <div *ngIf="(c?.nomeUtente == myNickName()); then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <button class="button-solid" (click)="deleteCommento(c.id)">
+          remove
+        </button>
+      </ng-template>
+      <ng-template #elseBlock></ng-template>
     </div>
+    <hr>
 
   </div>
+
+  <form #form="ngForm" class="login-form"(ngSubmit)="newCommento(form, post.id)">
+    <input type="text" name="commento" ngModel placeholder="Inserisci commento" required>
+
+    <button type="submit"
+            class="login-button"
+            [disabled]="form.invalid || form.pending">
+      commenta
+    </button>
+  </form>
 
 </div>
