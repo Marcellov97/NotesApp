@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit{
 
     this.utente.nome = f.value.nome;
     this.utente.cognome = f.value.cognome;
-    this.utente.nomeUtente = f.value.nickname;
+    this.utente.nomeUtente = f.value.nomeUtente;
     this.utente.email = f.value.email;
     this.utente.password = f.value.password;
     this.utente.moderatore = false;
