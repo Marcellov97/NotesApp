@@ -29,7 +29,7 @@ export class PostService {
 
   //TODO da testare
   setPost(post: Post): Observable<Post>{
-    return this.http.post<Post>(this.postURL + '/setPost', post)
+    return this.http.post<Post>(this.postURL, post)
   }
 
   //TODO qua bisogna fare le update
