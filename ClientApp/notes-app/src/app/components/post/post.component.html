@@ -17,11 +17,11 @@
   <!-- Valutazione del post -->
   <p>{{post.valutazione}}</p>
 
-  <form #form="ngForm" (ngSubmit)="valutaPost(form)">
-    <input type="number" [max]="31" name="val" ngModel placeholder="Valuta il post" required>
+  <form #form="ngForm" class="valutazione-form" (ngSubmit)="valutaPost(form)">
+    <input class="valutazione-input" type="number" [min]="0" [max]="31" name="val" ngModel placeholder="Valuta il post" required>
 
     <button type="submit"
-            class="login-button"
+            class="valutazione-button"
             [disabled]="form.invalid || form.pending || valutato">
       Valuta
     </button>
@@ -29,7 +29,7 @@
 
    <!-- bottone per displayare o meno i commenti di un post -->
   <button class = "button-commenti" (click)="activeCommenti()">
-    Commenti
+    Visualizza commenti
   </button>
 
   <!-- Sezione per il numero di commenti -->
@@ -42,6 +42,17 @@
 
   <!-- IF per vedere se mostrare i commenti oppure no -->
   <div *ngIf="(commentiActived == true); then thenBlocco else elseBlocco"></div>
+
+  <form #form="ngForm" class="commenti-form"(ngSubmit)="newCommento(form, post.id)">
+    <input class="inserimento_commenti_input" type="text" name="commento" ngModel placeholder="Inserisci commento" required>
+
+    <button class="commenti-button"
+            type="submit"
+            [disabled]="form.invalid || form.pending">
+      Commenta
+    </button>
+
+  </form>
   <!-- THEN -> mostra i commenti -->
     <ng-template #thenBlocco>
       <!-- Elenco dei commenti sotto al post, con nomeUtente e testo -->
@@ -65,15 +76,7 @@
 
       </div>
 
-    <form #form="ngForm" class="login-form"(ngSubmit)="newCommento(form, post.id)">
-      <input type="text" name="commento" ngModel placeholder="Inserisci commento" required>
 
-      <button type="submit"
-             class="login-button"
-              [disabled]="form.invalid || form.pending">
-        commenta
-      </button>
-    </form>
   </ng-template>
   <!-- ELSE -> non mostrare i commenti -->
   <ng-template #elseBlocco></ng-template>
