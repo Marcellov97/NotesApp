@@ -4,6 +4,8 @@ import {CommentoService} from "../../service/commento.service";
 import {Commento} from "../../model/commento";
 import {AppStateService} from "../../service/app-state.service";
 import { NgForm } from '@angular/forms';
+import {ValutazioneService} from "../../service/valutazione.service";
+import {Valutazione} from "../../model/valutazione";
 
 @Component({
   selector: 'app-post',
@@ -18,10 +20,12 @@ export class PostComponent implements OnInit{
 
   newCom : Commento = {
     id: "", idPost: "", nomeUtente: "", testo: ""
-  }
+  };
+
+  newVal : Valutazione = {idPost: "", idUtente: "", idValutazione: "", valutazione: 0};
 
 
-  constructor(private commentoService : CommentoService, private appState : AppStateService) {
+  constructor(private commentoService : CommentoService, private appState : AppStateService, private valutazioneService : ValutazioneService) {
   }
 
   ngOnInit(): void {
@@ -49,13 +53,20 @@ export class PostComponent implements OnInit{
     window.location.reload();
   }
 
-  activeCommenti(){
-    if(this.commentiActived == false)
-      this.commentiActived=true;
+  activeCommenti() {
+    if (this.commentiActived == false)
+      this.commentiActived = true;
     else if (this.commentiActived == true)
       this.commentiActived = false;
+  }
 
-}
+  valutaPost(val : number){
+    this.newVal.idPost = this.post.id;
+    this.newVal.idUtente = <string>this.appState.getID();
+    this.newVal.valutazione = val;
+
+    this.valutazioneService.setValutazione(this.newVal).subscribe();
+  }
 
 
 }
