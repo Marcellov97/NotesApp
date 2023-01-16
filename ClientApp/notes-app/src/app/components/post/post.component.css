@@ -1,16 +1,33 @@
 
+
+.card {
+
+  border: none;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+  border-radius: 4px;
+  background-color: aliceblue;
+}
+
 .nomeUtente{
-  background-color: #fdfffb;
+
   font-size: 16px;
+
+
+
 }
 
 .descrizionePost{
-  background-color: #fdfffb;
+
   font-size: 20px;
+  margin: 0 auto;
+
+
+
 }
 
 .numCommenti{
-  background-color: #dfe7ff
+  color:cornflowerblue;
+
 }
 
 .nomeUtenteCommento{
@@ -20,95 +37,45 @@
 }
 
 
-.commento{
-  display: inline;
-  font-size: 15px;
-}
+
 
 .boxCommento{
-  background-color: #d6d8d4
-
-}
-
-div {
-  display: block;
-}
-
-body {
-  background-color: #f7f6f6
-}
-
-.card {
-
-  border: none;
-  box-shadow: 5px 6px 6px 2px #e9ecef;
-  border-radius: 4px;
-}
-
-
-.dots{
-
-  height: 4px;
-  width: 4px;
-  margin-bottom: 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.badge{
-
-  padding: 7px;
-  padding-right: 9px;
-  padding-left: 16px;
-  box-shadow: 5px 6px 6px 2px #e9ecef;
-}
-
-.user-img{
-
-  margin-top: 4px;
-}
-
-.check-icon{
-
-  font-size: 17px;
-  color: #c3bfbf;
-  top: 1px;
-  position: relative;
-  margin-left: 3px;
-}
-
-.form-check-input{
-  margin-top: 6px;
-  margin-left: -24px !important;
-  cursor: pointer;
-}
-
-
-.form-check-input:focus{
-  box-shadow: none;
-}
-
-
-.icons i{
-
-  margin-left: 8px;
-}
-.reply{
-
-  margin-left: 12px;
-}
-
-.reply small{
-
-  color: #65676B;
+  /*background-color: #d6d8d4*/
 
 }
 
 
-.reply small:hover{
-
-  color: red;
-  cursor: pointer;
+.valutazione-form{
 
 }
+.valutazione-input{
+  width: 25%;
+  padding: 1px 1px;
+  margin: 3px 0;
+  box-sizing: border-box;
+
+}
+
+.valutazione-button{
+    margin-left: 5px;
+}
+
+.button-commenti{
+  padding: 2px 2px;
+}
+
+.commenti-form {
+    margin-left : 65px;
+    margin-bottom: 5px;
+    height: 25px;
+}
+.inserimento_commenti_input {
+
+}
+
+.commenti-button {
+  margin-left : 5px;
+  color: green;
+
+}
+
