@@ -17,6 +17,16 @@
   <!-- Valutazione del post -->
   <p>{{post.valutazione}}</p>
 
+  <form #form="ngForm" (ngSubmit)="valutaPost(form)">
+    <input type="number" [max]="31" name="val" ngModel placeholder="Valuta il post" required>
+
+    <button type="submit"
+            class="login-button"
+            [disabled]="form.invalid || form.pending || valutato">
+      Valuta
+    </button>
+  </form>
+
    <!-- bottone per displayare o meno i commenti di un post -->
   <button class = "button-commenti" (click)="activeCommenti()">
     Commenti
@@ -30,10 +40,11 @@
 
   </div>
 
-  <!-- Elenco dei commenti, con Utente e testo del commento -->
-  <div *ngIf="(commentiActived == true); then thenBlocco else elseBlocco">
+  <!-- IF per vedere se mostrare i commenti oppure no -->
+  <div *ngIf="(commentiActived == true); then thenBlocco else elseBlocco"></div>
+  <!-- THEN -> mostra i commenti -->
     <ng-template #thenBlocco>
-
+      <!-- Elenco dei commenti sotto al post, con nomeUtente e testo -->
       <div *ngFor="let c of commenti">
 
         <div class="boxCommento">
@@ -41,6 +52,7 @@
          <div>
           </div>
 
+          <!-- IF per vedere se mettere il bottone DELETE -->
           <div *ngIf="(c?.nomeUtente == myNickName()); then thenBlock else elseBlock"></div>
           <ng-template #thenBlock>
             <button class="button-solid" (click)="deleteCommento(c.id)">
@@ -49,7 +61,7 @@
           </ng-template>
           <ng-template #elseBlock></ng-template>
         </div>
-      < hr>
+      <hr>
 
       </div>
 
@@ -63,7 +75,7 @@
       </button>
     </form>
   </ng-template>
-    <ng-template #elseBlocco></ng-template>
-  </div>
+  <!-- ELSE -> non mostrare i commenti -->
+  <ng-template #elseBlocco></ng-template>
 
 </div>
