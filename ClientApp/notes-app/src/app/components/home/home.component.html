@@ -7,7 +7,6 @@
           <input type="text" name="cercare" ngModel placeholder="Cerca post" required>
 
           <button type="submit"
-                  class="login-button"
                   [disabled]="form.invalid || form.pending">
             <mat-icon>search</mat-icon>
           </button>
@@ -143,24 +142,18 @@
           </mat-card-header>
 
 
-          <!--
+
           <mat-card-content class="card-body">
             <div>
-              <mat-icon color="accent">videocam</mat-icon>
-              <span>Live Video</span>
+              <button>
+                <span class="material-icons" style="color: rgb(237, 95, 30);">filter_alt</span>
+              </button>
+
             </div>
 
-            <div>
-              <mat-icon color="primary">photo_album</mat-icon>
-              <span>Photo/Video</span>
-            </div>
 
-            <div>
-              <mat-icon color="warn">mood</mat-icon>
-              <span>Feeling/Activity</span>
-            </div>
           </mat-card-content>
-          -->
+
         </mat-card>
 
 
