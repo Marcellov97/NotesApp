@@ -15,10 +15,21 @@ import {AppStateService} from "../../service/app-state.service";
 
 export class HomeComponent implements OnInit {
 
+  //VARIABILI
+
   posts : Post[] = [];
   utenteLogged : Utente = {
     cognome: "", email: "", id: "", moderatore: false, nome: "", nomeUtente: "", password: ""
   }
+
+  ordinamenti : string[] = [
+    'valutazione',
+    'utente',
+    'descrizione'
+  ]
+
+  //*****************************************************************************************
+  //METODI
 
   constructor(private postService : PostService, private router: Router, private appState : AppStateService) {
   }
@@ -46,6 +57,11 @@ export class HomeComponent implements OnInit {
   logout() {
     this.appState.clearAll();
     this.router.navigate(['/login']);
+
+  }
+
+  sorting(f : NgForm){
+    this.posts.sort((a,b) => (a.nomeUtente > b.nomeUtente) ? 1 : ((b.nomeUtente > a.nomeUtente) ? -1 : 0));
 
   }
 }
