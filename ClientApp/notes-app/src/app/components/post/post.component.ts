@@ -14,17 +14,22 @@ import {Valutazione} from "../../model/valutazione";
 })
 export class PostComponent implements OnInit{
 
+  //VARIABILI del POST
+
   @Input() post : Post = {descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0};
   commentiActived : boolean = false;
+  valutato : boolean = false;
   commenti : Commento[] = [];
 
   newCom : Commento = {
     id: "", idPost: "", nomeUtente: "", testo: ""
   };
 
-  newVal : Valutazione = {idPost: "", idUtente: "", idValutazione: "", valutazione: 0};
+  newVal : Valutazione = {idPost: "", nomeUtente: "", idValutazione: "", valutazione: 0};
 
 
+  //*****************************************************************************************
+  //METODI del POST
   constructor(private commentoService : CommentoService, private appState : AppStateService, private valutazioneService : ValutazioneService) {
   }
 
@@ -32,6 +37,8 @@ export class PostComponent implements OnInit{
     this.commentoService.getCommentiByPost(this.post.id).subscribe((data : Commento[]) => {
       this.commenti = data;
     })
+
+    //TODO controllare dal database se esiste già una valutazione di questo utente su questo post
   }
 
   myNickName(){
@@ -60,12 +67,14 @@ export class PostComponent implements OnInit{
       this.commentiActived = false;
   }
 
-  valutaPost(val : number){
+  valutaPost(f : NgForm){
     this.newVal.idPost = this.post.id;
-    this.newVal.idUtente = <string>this.appState.getID();
-    this.newVal.valutazione = val;
+    this.newVal.nomeUtente = <string>this.myNickName();
+    this.newVal.valutazione = f.value.val;
 
     this.valutazioneService.setValutazione(this.newVal).subscribe();
+
+    window.location.reload();
   }
 
 

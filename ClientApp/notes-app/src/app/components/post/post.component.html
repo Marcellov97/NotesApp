@@ -17,9 +17,15 @@
   <!-- Valutazione del post -->
   <p>{{post.valutazione}}</p>
 
-  <button>
-    Valuta
-  </button>
+  <form #form="ngForm" (ngSubmit)="valutaPost(form)">
+    <input type="number" [max]="31" name="val" ngModel placeholder="Valuta il post" required>
+
+    <button type="submit"
+            class="login-button"
+            [disabled]="form.invalid || form.pending || valutato">
+      Valuta
+    </button>
+  </form>
 
    <!-- bottone per displayare o meno i commenti di un post -->
   <button class = "button-commenti" (click)="activeCommenti()">
