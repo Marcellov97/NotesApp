@@ -17,41 +17,53 @@
   <!-- Valutazione del post -->
   <p>{{post.valutazione}}</p>
 
+   <!-- bottone per displayare o meno i commenti di un post -->
+  <button class = "button-commenti" (click)="activeCommenti()">
+    Commenti
+  </button>
+
   <!-- Sezione per il numero di commenti -->
   <div class="numCommenti">
     <hr>
     <p>{{commenti.length}} commenti</p>
     <hr>
+
   </div>
 
   <!-- Elenco dei commenti, con Utente e testo del commento -->
-  <div *ngFor="let c of commenti">
+  <div *ngIf="(commentiActived == true); then thenBlocco else elseBlocco">
+    <ng-template #thenBlocco>
 
-    <div class="boxCommento">
-          <span><small class="nomeUtenteCommento">{{c?.nomeUtente}}</small><small class="commento">{{c?.testo}}</small></span>
-      <div>
+      <div *ngFor="let c of commenti">
+
+        <div class="boxCommento">
+             <span><small class="nomeUtenteCommento">{{c?.nomeUtente}}</small><small class="commento">{{c?.testo}}</small></span>
+         <div>
+          </div>
+
+          <div *ngIf="(c?.nomeUtente == myNickName()); then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>
+            <button class="button-solid" (click)="deleteCommento(c.id)">
+              remove
+            </button>
+          </ng-template>
+          <ng-template #elseBlock></ng-template>
+        </div>
+      < hr>
+
       </div>
 
-      <div *ngIf="(c?.nomeUtente == myNickName()); then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
-        <button class="button-solid" (click)="deleteCommento(c.id)">
-          remove
-        </button>
-      </ng-template>
-      <ng-template #elseBlock></ng-template>
-    </div>
-    <hr>
+    <form #form="ngForm" class="login-form"(ngSubmit)="newCommento(form, post.id)">
+      <input type="text" name="commento" ngModel placeholder="Inserisci commento" required>
 
+      <button type="submit"
+             class="login-button"
+              [disabled]="form.invalid || form.pending">
+        commenta
+      </button>
+    </form>
+  </ng-template>
+    <ng-template #elseBlocco></ng-template>
   </div>
-
-  <form #form="ngForm" class="login-form"(ngSubmit)="newCommento(form, post.id)">
-    <input type="text" name="commento" ngModel placeholder="Inserisci commento" required>
-
-    <button type="submit"
-            class="login-button"
-            [disabled]="form.invalid || form.pending">
-      commenta
-    </button>
-  </form>
 
 </div>
