@@ -1,9 +1,24 @@
-<form #form="ngForm" class="login-form"(ngSubmit)="postMessage(form)">
-  <input type="text" name="message" ngModel placeholder="Pubblica un post" required>
+<div class="new-post-container">
+<p> Pubblica un post :</p>
+<form #form="ngForm" class="new-post-form"(ngSubmit)="postMessage(form)">
+
+  <input class="post-input" type="text" name="message" ngModel placeholder="Descrizione post" required>
+
+
+    <div class="categorie-container">
+      <label class="categoria label">Categoria :</label>
+
+      <select class="categoria-select">
+        <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
+      </select>
+
+
+    </div>
 
   <button type="submit"
-          class="login-button"
-          [disabled]="form.invalid || form.pending">
-    Pubblica
-  </button>
+            class="new_post-button"
+            [disabled]="form.invalid || form.pending">
+      Pubblica
+    </button>
 </form>
+</div>

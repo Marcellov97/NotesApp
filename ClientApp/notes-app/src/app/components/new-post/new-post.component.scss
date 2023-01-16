@@ -1,0 +1,33 @@
+@import "src/styles";
+.new-post-container{
+}
+.new-post-form{
+  width: 100%;
+  margin:0 auto;
+
+}
+.p{
+  position: absolute;
+  top: auto;
+}
+.categorie-container{
+  margin-top: 5px;
+
+
+}
+.post-input{
+
+}
+.categoria-label{
+
+  margin-left :1px;
+}
+.categoria-select{
+  margin-left: 5px;
+}
+.new_post-button{
+  
+  color:$primary-button-color;
+  margin-top: 10px;
+
+}

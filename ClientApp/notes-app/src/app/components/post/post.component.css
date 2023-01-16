@@ -1,5 +1,4 @@
 
-
 .card {
 
   border: none;
@@ -12,22 +11,15 @@
 
   font-size: 16px;
 
-
-
 }
-
 .descrizionePost{
 
   font-size: 20px;
   margin: 0 auto;
 
-
-
 }
-
 .numCommenti{
   color:cornflowerblue;
-
 }
 
 .nomeUtenteCommento{
@@ -36,22 +28,18 @@
   font-size: 12px;
 }
 
-
-
-
 .boxCommento{
   /*background-color: #d6d8d4*/
 
 }
 
-
 .valutazione-form{
-
+  margin-bottom: 5px;
 }
 .valutazione-input{
   width: 25%;
   padding: 1px 1px;
-  margin: 3px 0;
+  margin-bottom: 3px;
   box-sizing: border-box;
 
 }
@@ -60,7 +48,7 @@
     margin-left: 5px;
 }
 
-.button-commenti{
+.visualizza_commenti-button{
   padding: 2px 2px;
 }
 
@@ -78,4 +66,3 @@
   color: green;
 
 }
-

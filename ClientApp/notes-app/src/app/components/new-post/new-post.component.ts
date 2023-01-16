@@ -3,14 +3,20 @@ import {NgForm} from "@angular/forms";
 import {PostService} from "../../service/post.service";
 import {Post} from "../../model/post";
 import {AppStateService} from "../../service/app-state.service";
-
+import {Categorie} from "src/app/shared/categorie";
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.css']
+  styleUrls: ['./new-post.component.scss']
 })
 export class NewPostComponent implements OnInit{
-
+  categs : string[] = [
+    'video',
+    'appunti',
+    'esercizi',
+    'esercizi svolti',
+    'risultati esercizi'
+  ]
   newPost : Post = {
     descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0
   }
