@@ -1,1 +1,9 @@
-<p>new-post works!</p>
+<form #form="ngForm" class="login-form"(ngSubmit)="postMessage(form)">
+  <input type="text" name="message" ngModel placeholder="Pubblica un post" required>
+
+  <button type="submit"
+          class="login-button"
+          [disabled]="form.invalid || form.pending">
+    Pubblica
+  </button>
+</form>
