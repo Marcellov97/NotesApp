@@ -62,6 +62,6 @@ export class HomeComponent implements OnInit {
 
   sorting(f : NgForm){
     this.posts.sort((a,b) => (a.nomeUtente > b.nomeUtente) ? 1 : ((b.nomeUtente > a.nomeUtente) ? -1 : 0));
-    
+
   }
 }

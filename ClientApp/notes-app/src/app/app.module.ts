@@ -31,9 +31,10 @@ import { NewPostComponent } from './components/new-post/new-post.component';
     FormsModule,
   ],
   providers: [],
-  exports: [
-    PostComponent
-  ],
+    exports: [
+        PostComponent,
+        NewPostComponent
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

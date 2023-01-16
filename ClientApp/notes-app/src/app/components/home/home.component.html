@@ -137,14 +137,7 @@
 
           <mat-card-header class="post-message-header"
                            style="padding-bottom: 20px; border-bottom: 1px solid lightgray;">
-            <img
-              alt=""
-              mat-card-avatar
-              [src]="">
-            <form #form="ngForm" (ngSubmit)="postMessage(form)">
-              <input class="on-your-mind" name="message" ngModel placeholder="A quali appunti stai pensando?" type="text">
-              <button style="display: none;" type="submit"></button>
-            </form>
+            <app-new-post></app-new-post>
 
           </mat-card-header>
 
