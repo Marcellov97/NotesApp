@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class PostComponent implements OnInit{
 
   @Input() post : Post = {descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0};
-
+  commentiActived : boolean = false;
   commenti : Commento[] = [];
 
   newCom : Commento = {
@@ -48,6 +48,14 @@ export class PostComponent implements OnInit{
 
     window.location.reload();
   }
+
+  activeCommenti(){
+    if(this.commentiActived == false)
+      this.commentiActived=true;
+    else if (this.commentiActived == true)
+      this.commentiActived = false;
+
+}
 
 
 }
