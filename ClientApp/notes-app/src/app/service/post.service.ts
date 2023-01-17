@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
 import {Post} from "../model/post";
+import {Valutazione} from "../model/valutazione";
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,9 @@ export class PostService {
     return this.http.post<Post>(this.postURL, post)
   }
 
-  //TODO qua bisogna fare le update
+  updatePostValutazione(data : Valutazione) : Observable<unknown>{
+    return this.http.put(this.postURL + '/updatePostValutazione/' + data.idPost + '/' + data.valutazione.toString() + '/' + data.nomeUtente, data);
+  }
 
 
   //TODO da testare

@@ -20,6 +20,10 @@ export class ValutazioneService {
     return this.http.get<Valutazione>(this.URL + '/getValutazioniPost/' + idPost)
   }
 
+  getValutazioneUtentePost(nomeUtente : string, idPost : string) : Observable<boolean>{
+    return this.http.get<boolean>(this.URL + '/getValutazioneUtentePost/' + nomeUtente + '/' + idPost)
+  }
+
   setValutazione(valutazione : Valutazione): Observable<Valutazione>{
     return this.http.post<Valutazione>(this.URL, valutazione)
   }

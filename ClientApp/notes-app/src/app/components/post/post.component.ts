@@ -6,6 +6,7 @@ import {AppStateService} from "../../service/app-state.service";
 import { NgForm } from '@angular/forms';
 import {ValutazioneService} from "../../service/valutazione.service";
 import {Valutazione} from "../../model/valutazione";
+import {PostService} from "../../service/post.service";
 
 @Component({
   selector: 'app-post',
@@ -30,7 +31,7 @@ export class PostComponent implements OnInit{
 
   //*****************************************************************************************
   //METODI del POST
-  constructor(private commentoService : CommentoService, private appState : AppStateService, private valutazioneService : ValutazioneService) {
+  constructor(private commentoService : CommentoService, private appState : AppStateService, private valutazioneService : ValutazioneService, private postService : PostService) {
   }
 
   ngOnInit(): void {
@@ -38,7 +39,10 @@ export class PostComponent implements OnInit{
       this.commenti = data;
     })
 
-    //TODO controllare dal database se esiste già una valutazione di questo utente su questo post
+
+    this.valutazioneService.getValutazioneUtentePost(<string>this.myNickName(), this.post.id).subscribe((data : boolean) => {
+      this.valutato = data;
+    })
   }
 
   myNickName(){
@@ -72,7 +76,7 @@ export class PostComponent implements OnInit{
     this.newVal.nomeUtente = <string>this.myNickName();
     this.newVal.valutazione = f.value.val;
 
-    this.valutazioneService.setValutazione(this.newVal).subscribe();
+    this.postService.updatePostValutazione(this.newVal).subscribe();
 
     window.location.reload();
   }
