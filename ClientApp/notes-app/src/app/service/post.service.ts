@@ -30,11 +30,15 @@ export class PostService {
   }
 
   getPostsbyUtente(nomeUtente: string): Observable<Post[]>{
-    return this.http.get<Post[]>(this.postURL + 'getPostsUtente/' + nomeUtente)
+    return this.http.get<Post[]>(this.postURL + '/getPostsUtente/' + nomeUtente)
+  }
+
+  getPostByCategoria(categoria : string): Observable<Post[]>{
+    return this.http.get<Post[]>(this.postURL + '/getPostsCategoria/' + categoria)
   }
 
 
-  setPost(post: Post): Observable<Post>{
+  setPost(post: Post): Observable<unknown>{
     return this.http.post<Post>(this.postURL, post)
   }
 

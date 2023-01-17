@@ -22,6 +22,16 @@ export class HomeComponent implements OnInit {
     cognome: "", email: "", id: "", moderatore: false, nome: "", nomeUtente: "", password: ""
   }
 
+  categoriaSelected : string = 'appunti'
+
+  categs : string[] = [
+    'video',
+    'appunti',
+    'esercizi',
+    'esercizi svolti',
+    'risultati esercizi'
+  ]
+
 
 
   //*****************************************************************************************
@@ -32,8 +42,8 @@ export class HomeComponent implements OnInit {
   }
 
   getPosts():void {
-    this.postService.getAllPosts().subscribe((data:Post[])=>{
-      this.posts=data;
+    this.postService.getPostByCategoria(this.categoriaSelected).subscribe((data : Post[]) => {
+      this.posts = data;
     })
   }
   ngOnInit(): void {
@@ -70,5 +80,10 @@ export class HomeComponent implements OnInit {
     this.postService.getPostsByString(f.value.key).subscribe((data : Post[]) => {
       this.posts = data;
     })
+  }
+
+  changeCategoria(x : string){
+    this.categoriaSelected = x;
+    this.getPosts();
   }
 }

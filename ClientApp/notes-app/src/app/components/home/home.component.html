@@ -166,9 +166,11 @@
         <mat-card class="post-message">
           <mat-card-content class="card-body">
             <div>
-              <button>
                 <span class="material-icons" style="color: rgb(237, 95, 30);">filter_alt</span>
-              </button>
+              <select #categ (change)="changeCategoria(categ.value)">
+                <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
+              </select>
+
 
               <button (click)="refreshPage()">
                 <span class="material-icons" style="color: rgb(8,176,0);">refresh</span>
