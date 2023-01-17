@@ -1,6 +1,6 @@
 export class Categorie{
 
-  categs : string[] = [
+   categs : string[] = [
     'video',
     'appunti',
     'esercizi',

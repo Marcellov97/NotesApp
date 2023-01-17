@@ -8,7 +8,14 @@
     <div class="categorie-container">
       <label class="categoria label">Categoria :</label>
 
-      <select class="categoria-select">
+      <!--
+      <select name="categoria" (change)="changeCategoria($event)" class="categoria-select">
+        <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
+      </select>
+      -->
+
+      <select #categ (change)="changeCategoria(categ.value)">
+        <option default>Pick a team</option>
         <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
       </select>
 
