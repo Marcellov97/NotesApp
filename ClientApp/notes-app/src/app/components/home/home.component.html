@@ -1,11 +1,15 @@
 <div class="home-container">
   <div class="home__header">
     <div class="home__header__left">
-      <img mat-card-avatar src="assets/fb-head.jpg"/>
       <div class="input">
         <mat-icon class="search-icon">search_outline</mat-icon>
-        <form>
-          <input placeholder="Cerca Appunti" type="text">
+        <form #form="ngForm" class="login-form"(ngSubmit)="searchPost(form)">
+          <input type="text" name="cercare" ngModel placeholder="Cerca post" required>
+
+          <button type="submit"
+                  [disabled]="form.invalid || form.pending">
+            <mat-icon>search</mat-icon>
+          </button>
         </form>
       </div>
 
@@ -32,15 +36,11 @@
     </div>
     <div class="home__header__right">
       <div>
-        <img
-          alt=""
-          mat-card-avatar
-          [src]="">
         <span class="name">{{utenteLogged.nomeUtente}}</span>
       </div>
-      <div>
+      <!--<div>
         <mat-icon>add</mat-icon>
-      </div>
+      </div> -->
 
       <!--
       <div>
@@ -142,35 +142,21 @@
           </mat-card-header>
 
 
-          <!--
+
           <mat-card-content class="card-body">
             <div>
-              <mat-icon color="accent">videocam</mat-icon>
-              <span>Live Video</span>
+              <button>
+                <span class="material-icons" style="color: rgb(237, 95, 30);">filter_alt</span>
+              </button>
+
             </div>
 
-            <div>
-              <mat-icon color="primary">photo_album</mat-icon>
-              <span>Photo/Video</span>
-            </div>
 
-            <div>
-              <mat-icon color="warn">mood</mat-icon>
-              <span>Feeling/Activity</span>
-            </div>
           </mat-card-content>
-          -->
+
         </mat-card>
 
-        <form #form="ngForm" class="login-form"(ngSubmit)="sorting(form)">
-          <input type="text" name="sorted" ngModel placeholder="Scegli come ordinare i post" required>
 
-          <button type="submit"
-                  class="login-button"
-                  [disabled]="form.invalid || form.pending">
-            Sorting
-          </button>
-        </form>
 
 
         <!--Loop Through All Posts From Database and Display-->
@@ -187,7 +173,6 @@
     <!-- Questa parte è la parte a destra della schermata home, potremmo anche toglierla -->
     <div class="home__body__feedRight">
       <div class="inside">
-        <img alt="feed" src="">
       </div>
 
 

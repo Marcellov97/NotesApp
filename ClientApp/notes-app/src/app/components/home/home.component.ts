@@ -22,11 +22,7 @@ export class HomeComponent implements OnInit {
     cognome: "", email: "", id: "", moderatore: false, nome: "", nomeUtente: "", password: ""
   }
 
-  ordinamenti : string[] = [
-    'valutazione',
-    'utente',
-    'descrizione'
-  ]
+
 
   //*****************************************************************************************
   //METODI
@@ -41,6 +37,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getPosts();
+    this.posts.sort((a,b) => (a.valutazione > b.valutazione) ? 1 : ((b.valutazione > a.valutazione) ? -1 : 0));
     this.utenteLogged.nome = <string>this.appState.getNome();
     this.utenteLogged.cognome = <string>this.appState.getCognome();
     this.utenteLogged.nomeUtente = <string>this.appState.getNomeUtente();
@@ -50,9 +47,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  postMessage(form: any) {
-
-  }
 
   logout() {
     this.appState.clearAll();
@@ -60,8 +54,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-  sorting(f : NgForm){
-    this.posts.sort((a,b) => (a.nomeUtente > b.nomeUtente) ? 1 : ((b.nomeUtente > a.nomeUtente) ? -1 : 0));
 
+
+  searchPost(f : NgForm){
+    //TODO fare richiesta HTTP e aggiornare l'elenco dei post
   }
 }
