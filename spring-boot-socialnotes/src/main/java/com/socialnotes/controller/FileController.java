@@ -13,9 +13,9 @@ public class FileController {
     @Autowired
     public FileController(FileService fileService) { this.fileService = fileService; }
     @PostMapping
-    boolean setFile (@RequestBody FilePost file) { return fileService.setFile(file); }
+    public boolean setFile (@RequestBody FilePost file) { return fileService.setFile(file); }
 
     @DeleteMapping("deleteFile/{idFile}")
-    boolean deleteFile (@PathVariable String idFile) { return fileService.deleteFile(idFile); }
+    public boolean deleteFile (@PathVariable String idFile) { return fileService.deleteFile(idFile); }
 
     }
