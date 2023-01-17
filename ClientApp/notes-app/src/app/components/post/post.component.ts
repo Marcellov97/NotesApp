@@ -16,7 +16,7 @@ export class PostComponent implements OnInit{
 
   //VARIABILI del POST
 
-  @Input() post : Post = {descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0};
+  @Input() post : Post = {categoria: [], descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0};
   commentiActived : boolean = false;
   valutato : boolean = false;
   commenti : Commento[] = [];

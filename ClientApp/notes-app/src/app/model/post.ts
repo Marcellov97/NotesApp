@@ -4,4 +4,6 @@ export interface Post{
   valutazione: number;
   segnalato: boolean;
   nomeUtente: string;
+
+  categoria : string[];
 }
