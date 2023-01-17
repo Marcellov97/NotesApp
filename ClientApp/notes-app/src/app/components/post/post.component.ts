@@ -47,7 +47,7 @@ export class PostComponent implements OnInit{
 
   deleteCommento(id : string){
     this.commentoService.deleteCommento(id).subscribe();
-    this.ngOnInit();
+    window.location.reload();
   }
 
   newCommento(f : NgForm, idP : string){
@@ -57,7 +57,7 @@ export class PostComponent implements OnInit{
 
     this.commentoService.setCommento(this.newCom).subscribe();
 
-    this.ngOnInit();
+    window.location.reload();
   }
 
   activeCommenti() {
@@ -74,7 +74,7 @@ export class PostComponent implements OnInit{
 
     this.valutazioneService.setValutazione(this.newVal).subscribe();
 
-    this.ngOnInit();
+    window.location.reload();
   }
 
 
