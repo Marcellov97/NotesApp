@@ -184,11 +184,12 @@
                 Bson filterPost = Filters.eq("idPost", idPost);
                 FindIterable<Document> docValutazioni = collectionValutazioni.find(filterPost);
                 for (Document d : docValutazioni) {
-                    val = new Valutazione (d.getObjectId("_id").toString(),
-                            d.getInteger("valutazione"),
-                            d.getString("idPost"),
-                            d.getString("nomeUtente"));
+                    val = new Valutazione ( d.getObjectId("_id").toString(),
+                                            d.getInteger("valutazione"),
+                                            d.getString("idPost"),
+                                            d.getString("nomeUtente"));
                     valutazioniPost.add(val);
+                    System.out.println(d.toString());
                 }
 
                 // Aggiorno la nuova media delle valutazioni
@@ -196,11 +197,11 @@
                 int n = 0;
                 for (Valutazione v : valutazioniPost) {
                     somma = somma + v.getValutazione();
+                    System.out.println(somma);
                     n++;
                 }
-                somma = somma + valutazione;
-                n++;
                 Integer nuovaValutazione = somma / n;
+                System.out.println(nuovaValutazione + "     somma: " + somma + "    n: " + n);
                 MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Post");
                 Bson filter = Filters.eq("_id", new ObjectId(idPost));
                 Bson update = Updates.set("valutazione", nuovaValutazione);

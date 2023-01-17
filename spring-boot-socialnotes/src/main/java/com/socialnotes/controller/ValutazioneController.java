@@ -19,7 +19,6 @@ public class ValutazioneController {
     public List<Valutazione> getValutazioniPost (@PathVariable String idPost) { return valutazioneService.getValutazioniPost(idPost); }
     @GetMapping("getValutazioneUtentePost/{nomeUtente}/{idPost}")
     public boolean getValutazioneUtentePost(@PathVariable String nomeUtente, @PathVariable String idPost) { return valutazioneService.getValutazioneUtentePost(nomeUtente, idPost); }
-
     @PostMapping
     public boolean setValutazione (@RequestBody Valutazione valutazione) { return valutazioneService.setValutazione(valutazione); }
 

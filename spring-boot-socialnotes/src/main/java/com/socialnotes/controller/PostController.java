@@ -35,7 +35,7 @@ public class PostController {
 
     @PutMapping("updatePostValutazione/{idPost}/{valutazione}/{nomeUtente}")
     public boolean updatePostValutazione(@PathVariable String idPost, @PathVariable int valutazione, @PathVariable String nomeUtente) {
-    return postService.updatePostValutazione(idPost, valutazione, nomeUtente);
+        return postService.updatePostValutazione(idPost, valutazione, nomeUtente);
     }
 
     @PutMapping("updatePostSegnalazione/{idPost}")
