@@ -19,6 +19,11 @@ export class PostService {
     return this.http.get<Post[]>(this.postURL + '/getAllPosts')
   }
 
+  //TODO da testare
+  getPostsByString(parola : string): Observable<Post[]>{
+    return this.http.get<Post[]>(this.postURL + '/getPostsString/' + parola)
+  }
+
   getPostsbyValutazione(valutazione : string): Observable<Post[]>{
     return this.http.get<Post[]>(this.postURL + '/getPostsValutazione/' + valutazione)
   }
@@ -27,12 +32,13 @@ export class PostService {
     return this.http.get<Post[]>(this.postURL + 'getPostsUtente/' + nomeUtente)
   }
 
-  //TODO da testare
+
   setPost(post: Post): Observable<Post>{
     return this.http.post<Post>(this.postURL, post)
   }
 
   //TODO qua bisogna fare le update
+
 
   //TODO da testare
   deletePost(id: string): Observable<unknown>{

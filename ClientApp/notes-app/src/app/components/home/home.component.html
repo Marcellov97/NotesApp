@@ -1,10 +1,18 @@
 <div class="home-container">
+
+
+  <!-- ******************  HOME HEADER  *************************  -->
   <div class="home__header">
+
+
+    <!-- ALTO A SINISTRA  -->
     <div class="home__header__left">
+
+      <!-- Barra di Ricerca  -->
       <div class="input">
         <mat-icon class="search-icon">search_outline</mat-icon>
         <form #form="ngForm" class="login-form"(ngSubmit)="searchPost(form)">
-          <input type="text" name="cercare" ngModel placeholder="Cerca post" required>
+          <input type="text" name="key" ngModel placeholder="Cerca post" required>
 
           <button type="submit"
                   [disabled]="form.invalid || form.pending">
@@ -15,6 +23,8 @@
 
     </div>
 
+
+    <!-- ALTO AL CENTRO  -->
     <div class="home__header__middle">
       <div class="active">
         <mat-icon>home</mat-icon>
@@ -34,6 +44,9 @@
       </div>
       -->
     </div>
+
+
+    <!-- ALTO A DESTRA  -->
     <div class="home__header__right">
       <div>
         <span class="name">{{utenteLogged.nomeUtente}}</span>
@@ -72,9 +85,13 @@
     </div>
   </div>
 
+
+
+  <!-- *************************** HOME BODY *********************************** -->
   <div class="home__body">
 
 
+    <!-- SINISTRA  -->
     <div class="home__body__sidebarLeft">
       <!--
       <div class="inside">
@@ -125,48 +142,46 @@
     </div>
 
 
+
+    <!-- CENTRO  -->
     <div class="home__body__contentMiddle">
 
-      <div class="home__body__contentMiddle__top">
 
+      <!-- CENTRO CONTENT in ALTO  -->
+      <div class="home__body__contentMiddle__top">
 
       </div>
 
-      <div class="home__body__contentMiddle__center">
-        <mat-card class="post-message">
 
+      <!-- CENTRO CONTENT SCHEDA  -->
+      <div class="home__body__contentMiddle__center">
+
+        <mat-card class="post-message">
           <mat-card-header class="post-message-header"
                            style="padding-bottom: 20px; border-bottom: 1px solid lightgray;">
             <app-new-post></app-new-post>
-
           </mat-card-header>
+        </mat-card>
 
-
-
+        <mat-card class="post-message">
           <mat-card-content class="card-body">
             <div>
               <button>
                 <span class="material-icons" style="color: rgb(237, 95, 30);">filter_alt</span>
               </button>
 
+              <button (click)="refreshPage()">
+                <span class="material-icons" style="color: rgb(8,176,0);">refresh</span>
+              </button>
             </div>
-
-
           </mat-card-content>
-
         </mat-card>
-
-
-
 
         <!--Loop Through All Posts From Database and Display-->
         <mat-card *ngFor="let p of posts" class="posts">
           <app-post [post]="p"></app-post>
         </mat-card>
-
-
       </div>
-
 
     </div>
 
@@ -174,8 +189,6 @@
     <div class="home__body__feedRight">
       <div class="inside">
       </div>
-
-
     </div>
 
   </div>

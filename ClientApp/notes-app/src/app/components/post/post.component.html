@@ -40,10 +40,7 @@
 
   </div>
 
-  <!-- IF per vedere se mostrare i commenti oppure no -->
-  <div *ngIf="(commentiActived == true); then thenBlocco else elseBlocco"></div>
-
-  <form #form="ngForm" class="commenti-form"(ngSubmit)="newCommento(form, post.id)">
+  <form #form="ngForm" class="commenti-form" (ngSubmit)="newCommento(form, post.id)">
     <input class="inserimento_commenti_input" type="text" name="commento" ngModel placeholder="Inserisci commento" required>
 
     <button class="commenti-button"
@@ -51,8 +48,12 @@
             [disabled]="form.invalid || form.pending">
       Commenta
     </button>
-
   </form>
+
+  <!-- IF per vedere se mostrare i commenti oppure no -->
+  <div *ngIf="(commentiActived == true); then thenBlocco else elseBlocco"></div>
+
+
   <!-- THEN -> mostra i commenti -->
     <ng-template #thenBlocco>
       <!-- Elenco dei commenti sotto al post, con nomeUtente e testo -->

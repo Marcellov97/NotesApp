@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   //METODI
 
   constructor(private postService : PostService, private router: Router, private appState : AppStateService) {
+
   }
 
   getPosts():void {
@@ -37,13 +38,20 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getPosts();
-    this.posts.sort((a,b) => (a.valutazione > b.valutazione) ? 1 : ((b.valutazione > a.valutazione) ? -1 : 0));
+    this.sortPost();
     this.utenteLogged.nome = <string>this.appState.getNome();
     this.utenteLogged.cognome = <string>this.appState.getCognome();
     this.utenteLogged.nomeUtente = <string>this.appState.getNomeUtente();
     this.utenteLogged.id = <string>this.appState.getID();
     this.utenteLogged.email = <string>this.appState.getMail();
+  }
 
+  refreshPage(){
+    window.location.reload();
+  }
+
+  sortPost(){
+    this.posts.sort((a,b) => (a.valutazione > b.valutazione) ? 1 : ((b.valutazione > a.valutazione) ? -1 : 0));
   }
 
 
@@ -57,6 +65,10 @@ export class HomeComponent implements OnInit {
 
 
   searchPost(f : NgForm){
+
     //TODO fare richiesta HTTP e aggiornare l'elenco dei post
+    this.postService.getPostsByString(f.value.key).subscribe((data : Post[]) => {
+      this.posts = data;
+    })
   }
 }
