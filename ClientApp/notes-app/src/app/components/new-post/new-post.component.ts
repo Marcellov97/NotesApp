@@ -18,6 +18,7 @@ export class NewPostComponent implements OnInit{
     'risultati esercizi'
   ]
   newPost : Post = {
+    categoria: [],
     descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0
   }
 
