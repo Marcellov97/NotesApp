@@ -34,10 +34,7 @@ public class SegnalazioneDataAccessService implements SegnalazioneDao {
                     .append("idPost", segnalazione.getIdPost())
                     .append("nomeUtente", segnalazione.getNomeUtente())
             );
-        } catch (MongoException me) {
-            return false;
-        }
-        //PostDAO.updatePostSegnalazione(segnalazione.getIdPost());
+        } catch (MongoException me) { return false; }
         return true;
     }
 }

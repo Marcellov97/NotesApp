@@ -33,19 +33,22 @@ public class CommentoDataAccessService implements CommentoDao {
     public List<Commento> getCommentiPost(String idPost) {
         LinkedList<Commento> commenti = new LinkedList<Commento>();
         Commento commento;
-        MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-        MongoCollection<org.bson.Document> collectionCommenti = mongoDatabase.getCollection("Commento");
-        Bson filterPost = Filters.eq("idPost", idPost);
-        FindIterable<Document> docCommenti = collectionCommenti.find(filterPost);
-        for (Document d : docCommenti) {
-            commento = new Commento (d.getObjectId("_id").toString(),
-                                    d.getString("testo"),
-                                    d.getString("idPost"),
-                                    d.getString("nomeUtente"));
-            commenti.add(commento);
-        }
+        try {
+            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+            MongoCollection<org.bson.Document> collectionCommenti = mongoDatabase.getCollection("Commento");
+            Bson filterPost = Filters.eq("idPost", idPost);
+            FindIterable<Document> docCommenti = collectionCommenti.find(filterPost);
+            for (Document d : docCommenti) {
+                commento = new Commento (d.getObjectId("_id").toString(),
+                                        d.getString("testo"),
+                                        d.getString("idPost"),
+                                        d.getString("nomeUtente"));
+                commenti.add(commento);
+            }
+        } catch (MongoException me) { return commenti; }
         return commenti;
     }
+
     @Override
     public boolean setCommento(Commento commento) {
         MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");

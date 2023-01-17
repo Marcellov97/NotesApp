@@ -31,69 +31,74 @@
 
        @Override
        public Utente getUtente(String nomeUtente) {
-            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-            MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
-            Bson filter = Filters.eq("nomeUtente", nomeUtente);
-            FindIterable<Document> docs = collection.find(filter);
-            Document doc = docs.first();
-            Utente utente = new Utente(doc.getObjectId("_id").toString(),
-                                       doc.getString("nome"),
-                                       doc.getString("cognome"),
-                                       doc.getString("nomeUtente"),
-                                       doc.getString("email"),
-                                       doc.getString("password"),
-                                       doc.getBoolean("moderatore"));
+           Utente utente = new Utente();
+           try {
+                MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+                MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
+                Bson filter = Filters.eq("nomeUtente", nomeUtente);
+                FindIterable<Document> docs = collection.find(filter);
+                Document doc = docs.first();
+                if (doc != null) {
+                    utente = new Utente(doc.getObjectId("_id").toString(),
+                            doc.getString("nome"),
+                            doc.getString("cognome"),
+                            doc.getString("nomeUtente"),
+                            doc.getString("email"),
+                            doc.getString("password"),
+                            doc.getBoolean("moderatore"));
+                } else {
+                    utente = new Utente("", "", "", "", "", "", false);
+                }
+           } catch(MongoException me) { return utente; }
             return utente;
         }
 
         public List<Utente> getAllUtenti () {
             List<Utente> utenti = new LinkedList<Utente>();
-            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-            MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
-            FindIterable<Document> docs = collection.find();
-            Utente utente;
-            for(Document doc : docs) {
-                utente = new Utente(doc.getObjectId("_id").toString(),
-                                    doc.getString("nome"),
-                                    doc.getString("cognome"),
-                                    doc.getString("nomeUtente"),
-                                    doc.getString("email"),
-                                    doc.getString("password"),
-                                    doc.getBoolean("moderatore"));
-                utenti.add(utente);
-            }
+            try {
+                MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+                MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
+                FindIterable<Document> docs = collection.find();
+                Utente utente;
+                for(Document doc : docs) {
+                    utente = new Utente(doc.getObjectId("_id").toString(),
+                                        doc.getString("nome"),
+                                        doc.getString("cognome"),
+                                        doc.getString("nomeUtente"),
+                                        doc.getString("email"),
+                                        doc.getString("password"),
+                                        doc.getBoolean("moderatore"));
+                    utenti.add(utente);
+                }
+            } catch(MongoException me) { return utenti; }
             return utenti;
         }
 
         @Override
         public boolean setUtente(Utente utente) {
-            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-            MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
             try {
+                MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+                MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
                 collection.insertOne(new Document()
-                        .append("_id", new ObjectId())
-                        .append("nome", utente.getNome())
-                        .append("cognome", utente.getCognome())
-                        .append("nomeUtente", utente.getNomeUtente())
-                        .append("email", utente.getEmail())
-                        .append("password", utente.getPassword())
-                        .append("moderatore", utente.isModeratore())
+                                                    .append("_id", new ObjectId())
+                                                    .append("nome", utente.getNome())
+                                                    .append("cognome", utente.getCognome())
+                                                    .append("nomeUtente", utente.getNomeUtente())
+                                                    .append("email", utente.getEmail())
+                                                    .append("password", utente.getPassword())
+                                                    .append("moderatore", utente.isModeratore())
                 );
-            } catch (MongoException me) {
-                return false;
-            }
+            } catch (MongoException me) { return false; }
             return true;
         }
 
         public boolean deleteUtente (String nomeUtente) {
-            MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
-            MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
-            Bson filter = Filters.eq("nomeUtente", nomeUtente);
             try {
+                MongoDatabase mongoDatabase = client.getDatabase("SocialNotes");
+                MongoCollection<org.bson.Document> collection = mongoDatabase.getCollection("Utente");
+                Bson filter = Filters.eq("nomeUtente", nomeUtente);
                 collection.deleteOne(filter);
-            } catch (MongoException me) {
-                return false;
-            }
+            } catch (MongoException me) { return false; }
             return true;
         }
 

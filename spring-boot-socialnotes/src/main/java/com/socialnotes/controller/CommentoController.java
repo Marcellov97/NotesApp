@@ -1,11 +1,9 @@
 package com.socialnotes.controller;
 
-import com.socialnotes.dao.CommentoDao;
 import com.socialnotes.model.Commento;
 import com.socialnotes.service.CommentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
