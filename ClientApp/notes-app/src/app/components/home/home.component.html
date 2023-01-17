@@ -10,11 +10,11 @@
 
       <!-- Barra di Ricerca  -->
       <div class="input">
-        <mat-icon class="search-icon">search_outline</mat-icon>
-        <form #form="ngForm" class="login-form"(ngSubmit)="searchPost(form)">
+        <form #form="ngForm" class="search-form"(ngSubmit)="searchPost(form)">
           <input type="text" name="key" ngModel placeholder="Cerca post" required>
 
-          <button type="submit"
+          <button class="search-button"
+                  type="submit"
                   [disabled]="form.invalid || form.pending">
             <mat-icon>search</mat-icon>
           </button>
@@ -27,7 +27,10 @@
     <!-- ALTO AL CENTRO  -->
     <div class="home__header__middle">
       <div class="active">
-        <mat-icon>home</mat-icon>
+        <button (click)="refreshPage()">
+          <mat-icon>home</mat-icon>
+        </button>
+
       </div>
       <!--
       <div>
@@ -166,15 +169,14 @@
         <mat-card class="post-message">
           <mat-card-content class="card-body">
             <div>
-                <span class="material-icons" style="color: rgb(237, 95, 30);">filter_alt</span>
-              <select #categ (change)="changeCategoria(categ.value)">
+
+                <mat-icon class="filter-icon" style="color: rgb(237, 95, 30);">filter_alt</mat-icon>
+                <p style="font-size: 15px;margin-left: 5px">Filtra post per categoria : </p>
+              <select class="filter-categoria"#categ (change)="changeCategoria(categ.value)">
                 <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
               </select>
 
 
-              <button (click)="refreshPage()">
-                <span class="material-icons" style="color: rgb(8,176,0);">refresh</span>
-              </button>
             </div>
           </mat-card-content>
         </mat-card>

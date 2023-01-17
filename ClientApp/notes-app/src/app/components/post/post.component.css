@@ -50,10 +50,11 @@
 
 .visualizza_commenti-button{
   padding: 2px 2px;
+  color: black;
 }
 
 .commenti-form {
-    margin-left : 65px;
+    /*margin-left : 65px;*/
     margin-bottom: 5px;
     height: 25px;
 }

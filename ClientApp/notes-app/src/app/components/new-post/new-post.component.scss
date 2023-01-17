@@ -1,14 +1,18 @@
 @import "src/styles";
 .new-post-container{
+
 }
 .new-post-form{
   width: 100%;
   margin:0 auto;
 
 }
-.p{
+.paragrafo{
   position: absolute;
   top: auto;
+
+  margin-bottom: 10px;
+
 }
 .categorie-container{
   margin-top: 5px;
@@ -16,7 +20,11 @@
 
 }
 .post-input{
-
+  margin-top: 20px;
+  margin-bottom: 5px ;
+  width: 180%;
+  height: 50px;
+  text-align: center;
 }
 .categoria-label{
 
@@ -26,7 +34,7 @@
   margin-left: 5px;
 }
 .new_post-button{
-  
+
   color:$primary-button-color;
   margin-top: 10px;
 

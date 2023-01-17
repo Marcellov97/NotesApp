@@ -38,9 +38,11 @@ home-container {
         padding: 10px 40px;
         border-radius: 20px;
 
+
         &::placeholder {
           padding-left: 20px;
           font-size: 15px;
+          color: $primary-button-color;
         }
       }
 
@@ -51,6 +53,11 @@ home-container {
         left: 10px;
         color: #828890;
       }
+      .search-button{
+        font-size:20px;
+        margin-left: 10px;
+        color : $primary-button-color;
+      }
 
     }
   }
@@ -58,6 +65,7 @@ home-container {
   // Left Ends Here
 
   &__middle {
+
     padding: 10px;
     height: 100%;
     display: flex;

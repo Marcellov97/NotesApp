@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         this.appState.setUtenteLogged(this.utente);
         this.router.navigate(['/home']);
       }else{
-        this.prop = 'accesso negato';
+        this.prop = 'Accesso Negato';
       }
     })
   }

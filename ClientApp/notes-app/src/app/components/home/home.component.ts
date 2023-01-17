@@ -25,8 +25,8 @@ export class HomeComponent implements OnInit {
   categoriaSelected : string = 'appunti'
 
   categs : string[] = [
-    'video',
     'appunti',
+    'video',
     'esercizi',
     'esercizi svolti',
     'risultati esercizi'

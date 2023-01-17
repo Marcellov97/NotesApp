@@ -1,21 +1,21 @@
 <div class="new-post-container">
-<p> Pubblica un post :</p>
+<b class = "paragrafo"> Pubblica un post :</b>
 <form #form="ngForm" class="new-post-form"(ngSubmit)="postMessage(form)">
 
   <input class="post-input" type="text" name="message" ngModel placeholder="Descrizione post" required>
 
 
     <div class="categorie-container">
-      <label class="categoria label">Categoria :</label>
+     <!-- <label class="categoria label">Categoria :</label>-->
 
       <!--
       <select name="categoria" (change)="changeCategoria($event)" class="categoria-select">
         <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
       </select>
       -->
-
-      <select #categ (change)="changeCategoria(categ.value)">
-        <option default>Pick a team</option>
+      <i>Categoria :</i>
+      <select #categ (change)="changeCategoria(categ.value)" style="margin-left: 3px">
+       
         <option *ngFor = "let categoria of categs" [value]="categoria">{{categoria}}</option>
       </select>
 

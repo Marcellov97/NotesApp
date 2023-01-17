@@ -12,13 +12,13 @@ import * as events from "events";
 })
 export class NewPostComponent implements OnInit{
   categs : string[] = [
-    'video',
-    'appunti',
-    'esercizi',
-    'esercizi svolti',
-    'risultati esercizi'
+    'Appunti',
+    'Video',
+    'Esercizi',
+    'Esercizi Svolti',
+    'Risultati Esercizi'
   ]
-  
+
   newPost : Post = {
     categoria: [],
     descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0
