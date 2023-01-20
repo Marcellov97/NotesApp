@@ -7,7 +7,14 @@
     <p>{{post.nomeUtente}}</p>
   </div>
 
-
+  <!-- Qua ci sta il pulsante elimina per eliminare il post che si è pubblicato -->
+  <div *ngIf="(post.nomeUtente == myNickName()); then thenPostDelete else elsePostDelete"></div>
+  <ng-template #thenPostDelete>
+    <button class="button-solid" (click)="deletePost()">
+      remove
+    </button>
+  </ng-template>
+  <ng-template #elsePostDelete></ng-template>
 
 
   <!-- Descrizione del post -->
@@ -15,8 +22,7 @@
     <p>{{post.descrizione}}</p>
   </div>
 
-  <!-- TODO Qua devono essere messi i file che verranno condivisi -->
-  FILE CONDIVISI
+
   <!-- Valutazione del post -->
   <p>{{post.valutazione}}</p>
 

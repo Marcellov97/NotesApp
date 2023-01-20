@@ -81,5 +81,17 @@ export class PostComponent implements OnInit{
     window.location.reload();
   }
 
+  deletePost(){
+    this.postService.deletePost(this.post.id).subscribe((data : unknown) => {
+      if(<boolean>data){
+        window.location.reload();
+      }else{
+
+      }
+    });
+
+
+  }
+
 
 }
