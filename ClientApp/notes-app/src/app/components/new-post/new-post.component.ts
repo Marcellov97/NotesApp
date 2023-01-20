@@ -24,7 +24,7 @@ export class NewPostComponent implements OnInit{
     descrizione: "", id: "", nomeUtente: "", segnalato: false, valutazione: 0
   }
 
-  categoriaSelected : string = ''
+  categoriaSelected : string = 'appunti'
 
 
   constructor(private postService : PostService, private appState : AppStateService) {
@@ -35,9 +35,15 @@ export class NewPostComponent implements OnInit{
     this.newPost.descrizione = f.value.message;
     this.newPost.categoria.push(this.categoriaSelected);
 
-    this.postService.setPost(this.newPost).subscribe();
+    this.postService.setPost(this.newPost).subscribe((data : unknown) =>{
+      if(<boolean>data){
+        window.location.reload();
+      }else{
 
-    window.location.reload();
+      }
+    });
+
+
   }
 
   changeCategoria(data : string){
