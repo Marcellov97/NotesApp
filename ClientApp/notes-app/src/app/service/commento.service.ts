@@ -20,7 +20,7 @@ export class CommentoService {
     return this.http.get<Commento[]>(this.URL + '/getCommentiPost/' + idPost)
   }
 
-  setCommento(commento : Commento): Observable<Commento>{
+  setCommento(commento : Commento): Observable<unknown>{
     return this.http.post<Commento>(this.URL, commento)
   }
 

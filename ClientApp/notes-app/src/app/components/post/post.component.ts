@@ -59,9 +59,15 @@ export class PostComponent implements OnInit{
     this.newCom.nomeUtente = <string>this.myNickName();
     this.newCom.testo = f.value.commento;
 
-    this.commentoService.setCommento(this.newCom).subscribe();
+    this.commentoService.setCommento(this.newCom).subscribe((data : unknown) => {
+      if(<boolean>data){
+        window.location.reload();
+      }else{
 
-    window.location.reload();
+      }
+    });
+
+
   }
 
   activeCommenti() {
@@ -80,7 +86,7 @@ export class PostComponent implements OnInit{
       if(<boolean>data){
         window.location.reload();
       }else{
-        
+
       }
     });
 
