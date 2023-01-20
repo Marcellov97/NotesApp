@@ -76,9 +76,15 @@ export class PostComponent implements OnInit{
     this.newVal.nomeUtente = <string>this.myNickName();
     this.newVal.valutazione = f.value.val;
 
-    this.postService.updatePostValutazione(this.newVal).subscribe();
+    this.postService.updatePostValutazione(this.newVal).subscribe((data : unknown) => {
+      if(<boolean>data){
+        window.location.reload();
+      }else{
+        
+      }
+    });
 
-    window.location.reload();
+
   }
 
   deletePost(){
