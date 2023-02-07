@@ -31,24 +31,26 @@ export class RegisterComponent implements OnInit{
   }
 
   registerFunc(f : NgForm){
-    //TODO fare un controllo se nel database già esiste un nome utente uguale
+    this.utenteService.getUtente(f.value.nomeUtente).subscribe((data: Utente) => {
+      if(data.nomeUtente == "") {
+        this.utente.nome = f.value.nome;
+        this.utente.cognome = f.value.cognome;
+        this.utente.nomeUtente = f.value.nomeUtente;
+        this.utente.email = f.value.email;
+        this.utente.password = f.value.password;
+        this.utente.moderatore = false;
 
-    this.utente.nome = f.value.nome;
-    this.utente.cognome = f.value.cognome;
-    this.utente.nomeUtente = f.value.nomeUtente;
-    this.utente.email = f.value.email;
-    this.utente.password = f.value.password;
-    this.utente.moderatore = false;
+        this.utenteService.setUtente(this.utente).subscribe((data: Utente) => {
+          this.utente = data;
+        });
 
-    this.utenteService.setUtente(this.utente).subscribe((data: Utente) => {
-
-
-      this.utente = data;
-
+        this.router.navigate(['/login']);
+      } else {
+        this.prop = "NomeUtente già esistente";
+      }
     });
-
-    this.router.navigate(['/login']);
-
   }
+
+
 
 }
