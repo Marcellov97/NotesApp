@@ -42,17 +42,26 @@ export class LoginComponent implements OnInit {
   login(form: NgForm):void {
     //raccolgo l'utente equivalente dal server
     this.utenteService.getUtente(form.value.nickname).subscribe((data: Utente) => {
-      this.utente = data; //salvo l'utente nella variabile
-      this.access = this.controlPassword(form.value.password);  //richiamo la funzione controlla password
 
-      if(this.access){
-        this.appState.setUtenteLogged(this.utente);
-        this.router.navigate(['/home']);
-      }else{
-        this.prop = 'Accesso Negato';
+      if (data.nomeUtente === "") {
+        this.prop = 'Utente non esistente'
+      } else {
+        this.utente = data; //salvo l'utente nella variabile
+        this.access = this.controlPassword(form.value.password);  //richiamo la funzione controlla password
+
+        if(this.access){
+          this.appState.setUtenteLogged(this.utente);
+          this.router.navigate(['/home']);
+        }else{
+          this.prop = 'Password sbagliata';
+        }
       }
+
+
     })
   }
+
+
 
   //FUNZIONE PER CONTROLLARE LA PASSWORD INSERITA
   private controlPassword(pw : string): boolean{

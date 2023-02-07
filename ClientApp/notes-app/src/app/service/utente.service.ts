@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import { Observable, of } from 'rxjs';
+import { Observable, of , map} from 'rxjs';
 import {Utente} from "../model/utente";
 
 @Injectable({
@@ -21,9 +21,17 @@ export class UtenteService {
     return this.http.get<Utente[]>(this.utenteURL+'/getAllUtenti')
   }
 
+  /*
   getUtente(nomeUtente : string): Observable<Utente>{
     return this.http.get<Utente>(this.utenteURL + '/getUtente/' + nomeUtente)
+  }*/
+
+  getUtente(nomeUtente : string): Observable<Utente>{
+    return this.http.get<Utente>(this.utenteURL + '/getUtente/' + nomeUtente);
   }
+
+
+
 
   //TODO da testare
   setUtente(utente: Utente): Observable<Utente>{
