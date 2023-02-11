@@ -1,0 +1,23 @@
+title setPost
+
+[->PostDataAccessObject:setPost(post : Post)
+activate PostDataAccessObject
+PostDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->PostDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+PostDataAccessObject->MongoDatabase:getCollection('Post')
+activate MongoDatabase
+MongoDatabase-->PostDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+PostDataAccessObject->MongoCollection:insertOne(new Document()\n.append("_id", new ObjectId())\n.append("descrizione", post.getDescrizione())\n.append("valutazione", post.getValutazione())\n.append("segnalato", post.getSegnalato())\n.append("categoria", post.getCategoria())\n.append("nomeUtente", post.getNomeUtente()))
+
+activate MongoCollection
+
+MongoCollection-->PostDataAccessObject:return **value** : boolean
+deactivate MongoCollection
+
+[<--PostDataAccessObject:return **value** : boolean
+deactivate PostDataAccessObject

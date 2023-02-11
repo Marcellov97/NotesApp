@@ -1,0 +1,17 @@
+title Ricerca Post
+
+actor Utente
+
+Utente->Client: inserimento stringa di ricerca
+activate Client
+Client->HomeComponent: searchPost(form : NgForm)
+activate HomeComponent
+HomeComponent->PostService: getPostsByString(form.value)
+activate PostService
+PostService->>]: Http Request getPostsString
+PostService<<-]: Http Response
+PostService-->HomeComponent: return **data** : Post[ ]
+deactivate PostService
+HomeComponent->HomeComponent:this.posts = **data**
+deactivate HomeComponent
+deactivate Client

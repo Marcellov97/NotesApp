@@ -1,0 +1,21 @@
+title setCommento
+
+[->CommentoDataAccessObject:setCommento(commento : Commento)
+activate CommentoDataAccessObject
+
+CommentoDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->CommentoDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+CommentoDataAccessObject->MongoDatabase:getCollection('Commento')
+activate MongoDatabase
+MongoDatabase-->CommentoDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+CommentoDataAccessObject->MongoCollection:insertOne(new Document()\n.append("_id", new ObjectId())\n.append("testo", commento.getTesto())\n.append("idPost", commento.getIdPost())\n.append("nomeUtente", commento.getNomeUtente())
+activate MongoCollection
+MongoCollection-->CommentoDataAccessObject:return **value** : boolean
+deactivate MongoCollection
+
+[<--CommentoDataAccessObject:return **value** : boolean

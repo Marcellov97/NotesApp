@@ -1,0 +1,35 @@
+title elimina Post
+
+actor Utente
+
+Utente->Client: Elimina Post
+activate Client
+Client->PostComponent: deletePost()
+activate PostComponent
+PostComponent->PostService: deletePost(this.post.id)
+activate PostService
+PostService->>]:Http Request deletePost
+PostService<<-] :Http Response
+PostService-->PostComponent: return **result** : boolean
+deactivate PostService
+PostComponent->PostComponent: controllo **result**
+
+
+alt result == true
+	PostComponent->Client: window.location.reload()
+    deactivate PostComponent
+    Client->HomeComponent:NgOnInit()
+    deactivate Client
+    activate HomeComponent
+    HomeComponent->HomeComponent: getPosts()
+    activate HomeComponent
+    HomeComponent->PostService:getPostByCategoria(this.categoriaSelected)
+    activate PostService
+    PostService->>]:Http Request getPostsCategoria
+    PostService<<-]: Http Response
+    PostService-->HomeComponent: return **data** : Post[ ]
+    deactivate PostService
+    HomeComponent->HomeComponent:this.posts = data
+    deactivate HomeComponent
+    
+end

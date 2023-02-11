@@ -1,0 +1,22 @@
+title deletePost
+
+[->PostDataAccessObject:deletePost(String idPost)
+activate PostDataAccessObject
+
+PostDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->PostDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+PostDataAccessObject->MongoDatabase:getCollection('Post')
+activate MongoDatabase
+MongoDatabase-->PostDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+PostDataAccessObject->MongoCollection:deleteOne(new Document("_id", new ObjectId(idPost)))
+activate MongoCollection
+MongoCollection-->PostDataAccessObject:return **value** : boolean
+deactivate MongoCollection
+
+[<--PostDataAccessObject:return **value** : boolean
+deactivate PostDataAccessObject

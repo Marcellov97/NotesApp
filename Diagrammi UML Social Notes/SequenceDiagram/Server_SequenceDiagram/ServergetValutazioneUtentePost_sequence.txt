@@ -1,0 +1,46 @@
+title getValutazioneUtentePost
+
+[->ValutazioneDataAccessObject:getValutazioneUtentePost(String nomeUtente, String idPost)
+activate ValutazioneDataAccessObject
+
+ValutazioneDataAccessObject->ValutazioneDataAccessObject:**new** LinkedList<Valutazione>()
+
+ValutazioneDataAccessObject->MongoClient:getDatabase("SocialNotes")
+activate MongoClient
+MongoClient-->ValutazioneDataAccessObject:return **mongoDatabase** MongoDatabase
+deactivate MongoClient
+
+ValutazioneDataAccessObject->MongoDatabase:getCollection("Valutazione")
+activate MongoDatabase
+MongoDatabase-->ValutazioneDataAccessObject:return **collectionValutazioni** : MongoCollection
+deactivate MongoDatabase
+
+ValutazioneDataAccessObject->Filters:eq("nomeUtente", nomeUtente)
+activate Filters
+Filters-->ValutazioneDataAccessObject:return **filterNomeUtente** : Bson
+deactivate Filters
+
+ValutazioneDataAccessObject->Filters:eq("idPost", idPost)
+activate Filters
+Filters-->ValutazioneDataAccessObject:return **filterId** : Bson
+deactivate Filters
+
+ValutazioneDataAccessObject->Filters:and(filterNomeUtente, filterId)
+activate Filters
+Filters-->ValutazioneDataAccessObject:return **filter** : Bson
+deactivate Filters
+
+ValutazioneDataAccessObject->MongoCollection:find(filter)
+activate MongoCollection
+MongoCollection-->ValutazioneDataAccessObject:return **docValutazioni** : FindIterable<Document>
+deactivate MongoCollection
+
+ValutazioneDataAccessObject->ValutazioneDataAccessObject:controllo **docValutazioni**
+
+alt docValutazione != null
+
+[<--ValutazioneDataAccessObject:return true
+
+else 
+[<--ValutazioneDataAccessObject:return false
+end 

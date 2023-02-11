@@ -1,0 +1,40 @@
+title getPostsCategoria
+
+[->PostDataAccessObject:getPostsCategoria(categoria : String)
+activate PostDataAccessObject
+
+PostDataAccessObject->PostDataAccessObject:**new** LinkedList<Post>()
+
+PostDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->PostDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+PostDataAccessObject->MongoDatabase:getCollection('Post')
+activate MongoDatabase
+MongoDatabase-->PostDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+PostDataAccessObject->Pattern:compile(categoria, Pattern.CASE_INSENSITIVE)
+activate Pattern
+Pattern-->PostDataAccessObject:return **regex** : Pattern
+deactivate Pattern
+
+PostDataAccessObject->Filters:regex("categoria", regex)
+activate Filters
+Filters-->PostDataAccessObject:return **filterPost** : Bson
+deactivate Filters
+
+PostDataAccessObject->MongoCollection:find(filterPost)
+activate MongoCollection
+MongoCollection-->PostDataAccessObject:return **docPosts** : FindIterable<Document>
+deactivate MongoCollection
+
+loop for Document d in docPosts 
+PostDataAccessObject->PostDataAccessObject:new Post (d.getObjectId("_id").toString(),\nd.getString("descrizione"),\nd.getInteger("valutazione"),\nd.getBoolean("segnalato"),\nd.getList("categoria", String.class),\nd.getString("nomeUtente"))
+
+PostDataAccessObject->PostDataAccessObject:Si aggiunge l'elemento all'array **posts**
+end 
+
+[<--PostDataAccessObject:return posts : Post[ ]
+deactivate PostDataAccessObject

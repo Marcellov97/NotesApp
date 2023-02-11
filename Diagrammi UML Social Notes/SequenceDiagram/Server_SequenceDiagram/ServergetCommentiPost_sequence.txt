@@ -1,0 +1,35 @@
+title getCommentiPost
+
+[->CommentoDataAccessObject:getCommentiPost(idPost : String)
+activate CommentoDataAccessObject
+CommentoDataAccessObject->CommentoDataAccessObject:**new** LinkedList<Commento>()
+
+CommentoDataAccessObject->MongoClient:getDatabase("SocialNotes")
+activate MongoClient
+MongoClient-->CommentoDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+CommentoDataAccessObject->MongoDatabase:getCollection("Commento")
+activate MongoDatabase
+MongoDatabase-->CommentoDataAccessObject:return **collectionCommenti** : Collection
+deactivate MongoDatabase
+
+CommentoDataAccessObject->Filters:eq("idPost", idPost)
+activate Filters
+Filters-->CommentoDataAccessObject:return **filterPost** : Bson
+deactivate Filters
+
+CommentoDataAccessObject->MongoCollection:find(filterPost)
+activate MongoCollection
+MongoCollection-->CommentoDataAccessObject:return **docCommenti** : FindIterable<Document>
+deactivate MongoCollection
+
+loop for Document d in docCommenti
+
+CommentoDataAccessObject->CommentoDataAccessObject:new Commento (d.getObjectId("_id").toString(),\nd.getString("testo"),\nd.getString("idPost"),\nd.getString("nomeUtente"))
+
+CommentoDataAccessObject->CommentoDataAccessObject:commenit.add(commento)
+
+end 
+
+[<--CommentoDataAccessObject:return **commenti** : Commento [ ]

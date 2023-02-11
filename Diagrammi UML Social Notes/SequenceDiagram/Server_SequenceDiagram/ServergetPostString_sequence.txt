@@ -1,0 +1,40 @@
+title getPostsString
+
+[->PostDataAccessObject:getPostsString(string : String)
+activate PostDataAccessObject
+
+PostDataAccessObject->PostDataAccessObject:**posts** = **new** LinkedList<Post>()
+
+PostDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->PostDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+PostDataAccessObject->MongoDatabase:getCollection('Post')
+activate MongoDatabase
+MongoDatabase-->PostDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+PostDataAccessObject->Pattern:compile(string, Pattern.CASE_INSENSITIVE)
+activate Pattern
+Pattern-->PostDataAccessObject:return **regex** : Pattern
+deactivate Pattern
+
+PostDataAccessObject->Filters:regex("descrizione", regex)
+activate Filters
+Filters-->PostDataAccessObject:return **filterPost** : Bson
+deactivate Filters
+
+PostDataAccessObject->MongoCollection:find(filterPost)
+activate MongoCollection
+MongoCollection-->PostDataAccessObject:return **docPosts** : FindIterable<Document>
+deactivate MongoCollection
+
+loop for Document d in docPosts 
+PostDataAccessObject->PostDataAccessObject:**post** = new Post (d.getObjectId("_id").toString(),\nd.getString("descrizione"),\nd.getInteger("valutazione"),\nd.getBoolean("segnalato"),\nd.getList("categoria", String.class),\nd.getString("nomeUtente"))
+
+PostDataAccessObject->PostDataAccessObject:posts.add(post)
+end 
+
+[<--PostDataAccessObject:return **posts** : Post[ ]
+deactivate PostDataAccessObject

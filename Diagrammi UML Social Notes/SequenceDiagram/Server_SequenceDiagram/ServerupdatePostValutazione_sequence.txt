@@ -1,0 +1,62 @@
+title updatePostValutazione
+
+bottomparticipants 
+
+entryspacing 1.0
+[->PostDataAccessObject:updatePostValutazione(String idPost, int valutazione, String nomeUtente)
+
+PostDataAccessObject->PostDataAccessObject:**valutazioniPost** = **new** LinkedList<Valutazione>()
+
+PostDataAccessObject->MongoClient:getDatabase("SocialNotes")
+activate MongoClient
+MongoClient-->PostDataAccessObject:return mongodatabase : MongoDatabase
+deactivate MongoClient
+
+PostDataAccessObject->MongoDatabase:getCollection("Valutazione")
+activate MongoDatabase
+MongoDatabase-->PostDataAccessObject:return **collectionValutazioni** : MongoColletion
+deactivate MongoDatabase
+
+PostDataAccessObject->MongoCollection:insertOne(new Document()\n.append("_id", new ObjectId())\n.append("valutazione", valutazione)\n.append("idPost", idPost)\n.append("nomeUtente", nomeUtente)
+
+PostDataAccessObject->Filters:eq("idPost", idPost)
+activate Filters
+Filters-->PostDataAccessObject:return **filterPost** : Bson
+deactivate Filters
+
+PostDataAccessObject->MongoCollection:find(filterPost)
+activate MongoCollection
+MongoCollection-->PostDataAccessObject:return **docValutazioni** : FindIterable<Document>
+deactivate MongoCollection
+
+loop for Document d in docValutazioni
+
+PostDataAccessObject->PostDataAccessObject:**val** = new Valutazione ( \nd.getObjectId("_id").toString(),\nd.getInteger("valutazione"),\nd.getString("idPost"),\nd.getString("nomeUtente"))
+
+PostDataAccessObject->PostDataAccessObject:valutazioniPost.add(val)
+end 
+
+PostDataAccessObject->PostDataAccessObject:int **somma** = 0\nint **n** = 0
+
+loop for Valutazione v in valutazioniPost
+PostDataAccessObject->PostDataAccessObject:somma = somma + v.getValutazione()\nn + +
+end 
+
+PostDataAccessObject->PostDataAccessObject:**nuovaValutazione** = somma / n
+
+PostDataAccessObject->MongoDatabase:getCollection("Post")
+activate MongoDatabase
+MongoDatabase-->PostDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+PostDataAccessObject->Filters:eq("_id", new ObjectId(idPost))
+activate Filters
+Filters-->PostDataAccessObject:return **filter** : Bson
+deactivate Filters
+
+PostDataAccessObject->Updates:set("valutazione", nuovaValutazione)
+activate Updates
+Updates-->PostDataAccessObject:return **update** : Bson
+deactivate Updates
+
+PostDataAccessObject->MongoCollection:updateOne(filter, update)

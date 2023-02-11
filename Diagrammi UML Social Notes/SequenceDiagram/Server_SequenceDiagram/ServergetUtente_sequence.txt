@@ -1,0 +1,37 @@
+title getUtente
+
+[->UtenteDataAccessObject:getUtente(nomeUtente : string)
+activate UtenteDataAccessObject
+UtenteDataAccessObject->UtenteDataAccessObject:new Utente()
+UtenteDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->UtenteDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+UtenteDataAccessObject->MongoDatabase:getCollection('Utente')
+activate MongoDatabase
+MongoDatabase-->UtenteDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+UtenteDataAccessObject->Filters:eq("nomeUtente", nomeUtente)
+activate Filters
+Filters-->UtenteDataAccessObject: return **filter** : Bson
+deactivate Filters
+UtenteDataAccessObject->MongoCollection:find(filter)
+activate MongoCollection
+MongoCollection-->UtenteDataAccessObject:return **docs** : FindIterable<Document>
+deactivate MongoCollection
+
+UtenteDataAccessObject->FindIterable:first()
+activate FindIterable
+FindIterable-->UtenteDataAccessObject:return **doc** : Document
+deactivate FindIterable
+
+UtenteDataAccessObject->UtenteDataAccessObject: controllo su **doc**
+
+alt doc != null
+UtenteDataAccessObject->UtenteDataAccessObject: new Utente(doc.getObjectId("_id").toString(),\ndoc.getString("nome"),\ndoc.getString("cognome"),\ndoc.getString("nomeUtente"),\ndoc.getString("email"),\ndoc.getString("password"),\ndoc.getBoolean("moderatore"))
+else doc == null
+UtenteDataAccessObject->UtenteDataAccessObject: new Utente(" ", " ", " ", " ", " ", " ", false)
+end
+
+[<--UtenteDataAccessObject:return **utente** : Utente

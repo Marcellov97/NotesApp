@@ -1,0 +1,23 @@
+title setUtente
+
+[->UtenteDataAccessObject:setUtente(utente : Utente)
+activate UtenteDataAccessObject
+UtenteDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->UtenteDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+UtenteDataAccessObject->MongoDatabase:getCollection('Utente')
+activate MongoDatabase
+MongoDatabase-->UtenteDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+UtenteDataAccessObject->MongoCollection:insertOne(new Document()\n.append("_id", new ObjectId())\n.append("nome", utente.getNome())\n.append("cognome", utente.getCognome())\n.append("nomeUtente", utente.getNomeUtente())\n.append("email", utente.getEmail())\n.append("password", utente.getPassword())\n.append("moderatore", utente.isModeratore()))
+
+activate MongoCollection
+
+MongoCollection-->UtenteDataAccessObject:return utente: Utente
+deactivate MongoCollection
+
+[<--UtenteDataAccessObject:return utente : Utente
+deactivate UtenteDataAccessObject

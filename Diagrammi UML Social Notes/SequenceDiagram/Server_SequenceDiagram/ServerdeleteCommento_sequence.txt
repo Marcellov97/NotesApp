@@ -1,0 +1,22 @@
+title deleteCommento
+
+[->CommentoDataAccessObject:deleteCommento(String idCommento)
+activate CommentoDataAccessObject
+
+CommentoDataAccessObject->MongoClient:getDatabase('SocialNotes')
+activate MongoClient
+MongoClient-->CommentoDataAccessObject:return **mongoDatabase** : MongoDatabase
+deactivate MongoClient
+
+CommentoDataAccessObject->MongoDatabase:getCollection('Commento')
+activate MongoDatabase
+MongoDatabase-->CommentoDataAccessObject:return **collection** : MongoCollection
+deactivate MongoDatabase
+
+CommentoDataAccessObject->MongoCollection:deleteOne(new Document("_id", new ObjectId(idCommento)))
+activate MongoCollection
+MongoCollection-->CommentoDataAccessObject:return **value** : boolean
+deactivate MongoCollection
+
+[<--CommentoDataAccessObject:return **value** : boolean
+deactivate CommentoDataAccessObject

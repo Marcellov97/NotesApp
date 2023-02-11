@@ -1,0 +1,40 @@
+title Elimina Commento
+
+actor Utente
+
+entryspacing 0.8
+Utente->Client: Elimina commento
+activate Client
+Client->PostComponent:deleteCommento(id: string)
+activate PostComponent
+PostComponent->CommentoService:deleteCommento(id)
+activate CommentoService
+CommentoService->>]:Http request deleteCommento
+CommentoService<<-]: Http Response
+CommentoService-->PostComponent:return **result** : boolean
+PostComponent->PostComponent:controllo **result**
+
+alt result == true
+	PostComponent->Client: window.location.reload()
+    Client->PostComponent:NgOnInit()
+    deactivate Client
+    note left of Client #lightblue: La funzione **NgOnInit()** viene \nrichiamata ogni volta che c'è\nun reload della pagina web
+    PostComponent->CommentoService:getCommentiByPost(this.post.id)
+    note left of PostComponent #lightblue: Questa funzione serve per caricare\ndal server i commenti aggiornati del post\nche si sta visualizzando
+    CommentoService->>]:Http request getCommentiPost
+	CommentoService<<-]: Http Response
+	CommentoService-->PostComponent:return **data** : Commento[ ]
+    deactivate CommentoService
+	PostComponent->PostComponent:this.commenti = **data**
+    
+
+
+PostComponent->ValutazioneService:getValutazioneUtentePost(this.myNickName, this.post.id)
+activate ValutazioneService
+note left of PostComponent #lightblue:Questa funzione serve per capire \nse l'utente ha già valutato il post,\nin modo da non permettergli di farlo di nuovo
+ValutazioneService->>]:Http request getValutazioniUtentePost
+	ValutazioneService<<-]: Http Response
+	ValutazioneService-->PostComponent:return **data** : boolean
+    deactivate ValutazioneService
+    PostComponent->PostComponent:this.valutato = **data**
+end

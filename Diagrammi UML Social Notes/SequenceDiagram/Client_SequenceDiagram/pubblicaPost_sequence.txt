@@ -1,0 +1,34 @@
+title Pubblica Post
+
+actor Utente
+
+Utente->Client:Inserimento campi Post
+activate Client
+Client->NewPostComponent: postMessage(form: NgForm)
+activate NewPostComponent
+NewPostComponent->NewPostComponent:Aggiornamento \n**this.newPost** con **form**
+NewPostComponent->PostService:setPost(this.newPost)
+activate PostService
+PostService->]:Http Request setPost
+PostService<-]:Http Response
+PostService-->NewPostComponent:return **result** : boolean
+deactivate PostService
+NewPostComponent->NewPostComponent: controllo **result**
+
+alt result == true
+NewPostComponent->Client: window.location.reload()
+    deactivate NewPostComponent
+    Client->HomeComponent:NgOnInit()
+    deactivate Client
+    activate HomeComponent
+    HomeComponent->HomeComponent: getPosts()
+    activate HomeComponent
+    HomeComponent->PostService:getPostByCategoria(this.categoriaSelected)
+    activate PostService
+    PostService->>]:Http Request getPostsCategoria
+    PostService<<-]: Http Response
+    PostService-->HomeComponent: return **data** : Post[ ]
+    deactivate PostService
+    HomeComponent->HomeComponent:this.posts = **data**
+    deactivate HomeComponent
+end 
